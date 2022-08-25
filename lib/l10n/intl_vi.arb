@@ -1,0 +1,14 @@
+{
+  "signup": "Đăng ký",
+  "login": "Đăng nhập",
+  "loginwithfb": "Login with Facebook",
+  "enteryouremail": "Nhập email",
+  "enteryourpass": "Nhập mật khẩu",
+  "pleaseenteryouremail": "Vui lòng nhập tài khoản hoặc mật khẩu",
+  "cancel": "Hủy",
+  "OK": "OK",
+  "pleaseenteremail": "Vui lòng nhập email",
+  "pleaseenterthepassword": "Vui lòng nhập mật khẩu",
+  "incorrectpassword": "Sai mật khẩu",
+  "mustbe6": "Tối thiểu 6 ký tựu"
+}

@@ -1,0 +1,14 @@
+{
+  "signup": "Sign up",
+  "login": "Log in",
+  "loginwithfb": "Login with Facebook",
+  "enteryouremail": "Enter your email",
+  "enteryourpass": "Enter your password",
+  "pleaseenteryouremailorpassword": "Please enter your email or password",
+  "cancel": "Cancel",
+  "OK": "OK",
+  "pleaseenteremail": "Please enter the email",
+  "pleaseenterthepassword": "Please enter the password",
+  "incorrectpassword": "Incorrect password",
+  "mustbe6": "Password must at least 6 characters"
+}
