@@ -21,3 +21,8 @@ void configEasyLoading() {
     ..textColor = Colors.white
     ..toastPosition = EasyLoadingToastPosition.center;
 }
+
+String dateFormat(DateTime date) {
+  String formatTime = "${date.day}-${date.month}-${date.year}";
+  return formatTime;
+}

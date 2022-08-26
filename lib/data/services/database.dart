@@ -19,9 +19,14 @@ class DataBaseService {
     final data = query.data();
     if (data != null) {
       return User(
-        userId: data["userId"],
-        email: data["email"],
-      );
+          userId: data["userId"],
+          email: data["email"],
+          birthday: data["birthday"],
+          name: data["name"],
+          gender: data["gender"],
+          partner: User(
+            userId: data["partnerId"],
+          ));
     }
     return null;
   }
@@ -31,6 +36,8 @@ class DataBaseService {
       "userId": user.userId,
       "email": user.email,
       "partnerId": user.partner?.userId ?? "",
+      "name": user.name ?? "",
+      "birthday": user.birthday ?? "",
       "gender": user.gender ?? -1,
     }).catchError((e) {
       EasyLoading.showToast(e.toString());

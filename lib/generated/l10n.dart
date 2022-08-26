@@ -169,6 +169,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Your name`
+  String get yourname {
+    return Intl.message(
+      'Your name',
+      name: 'yourname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get pleaseenteryourname {
+    return Intl.message(
+      'Please enter your name',
+      name: 'pleaseenteryourname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth`
+  String get dateofbirth {
+    return Intl.message(
+      'Date of birth',
+      name: 'dateofbirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are`
+  String get youare {
+    return Intl.message(
+      'You are',
+      name: 'youare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your birthday`
+  String get enteryourbirthday {
+    return Intl.message(
+      'Enter your birthday',
+      name: 'enteryourbirthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your profile`
+  String get yourprofile {
+    return Intl.message(
+      'Your profile',
+      name: 'yourprofile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

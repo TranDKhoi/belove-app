@@ -10,5 +10,12 @@
   "pleaseenteremail": "Please enter the email",
   "pleaseenterthepassword": "Please enter the password",
   "incorrectpassword": "Incorrect password",
-  "mustbe6": "Password must at least 6 characters"
+  "mustbe6": "Password must at least 6 characters",
+  "yourname": "Your name",
+  "pleaseenteryourname":"Please enter your name",
+  "dateofbirth": "Date of birth",
+  "youare": "You are",
+  "enteryourbirthday": "Enter your birthday",
+  "yourprofile": "Your profile",
+  "skip": "Skip"
 }

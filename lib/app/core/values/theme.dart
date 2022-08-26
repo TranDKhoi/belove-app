@@ -6,4 +6,8 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
         fontFamily: "Arima",
       ),
   colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
+  appBarTheme: const AppBarTheme(
+    elevation: 0,
+    foregroundColor: Colors.white,
+  ),
 );

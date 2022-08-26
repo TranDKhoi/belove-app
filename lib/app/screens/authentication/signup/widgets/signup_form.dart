@@ -24,6 +24,7 @@ class _SignUpFormState extends State<SignUpForm> {
     _emailController.dispose();
     _passController.dispose();
     _rePassController.dispose();
+    _bloc.dispose();
     super.dispose();
   }
 

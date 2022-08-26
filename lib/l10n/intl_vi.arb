@@ -10,5 +10,12 @@
   "pleaseenteremail": "Vui lòng nhập email",
   "pleaseenterthepassword": "Vui lòng nhập mật khẩu",
   "incorrectpassword": "Sai mật khẩu",
-  "mustbe6": "Tối thiểu 6 ký tựu"
+  "mustbe6": "Tối thiểu 6 ký tựu",
+  "yourname": "Tên là",
+  "pleaseenteryourname": "Nhập tên của bạn",
+  "dateofbirth": "Ngày sinh",
+  "youare": "Bạn là",
+  "enteryourbirthday": "Nhập ngày sinh của bạn",
+  "yourprofile": "Trang của bạn",
+  "skip": "Bỏ qua"
 }
