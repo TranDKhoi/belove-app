@@ -1,3 +1,5 @@
+import 'package:belove_app/app/global_data/global_data.dart';
+import 'package:belove_app/data/services/database.dart';
 import 'package:flutter/material.dart';
 
 class Wrapper extends StatefulWidget {
@@ -10,6 +12,14 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Text(GlobalData.ins.currentUser!.email!),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          DataBaseService.ins.createChatRoom();
+        },
+        child: Icon(Icons.mail_outline_rounded),
+      ),
+    );
   }
 }

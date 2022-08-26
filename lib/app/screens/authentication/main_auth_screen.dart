@@ -1,6 +1,6 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/core/values/color.dart';
-import 'package:belove_app/app/core/values/global_key.dart';
+import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
 import 'package:belove_app/app/screens/authentication/login/login_form.dart';
 import 'package:flutter/material.dart';

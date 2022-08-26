@@ -1,21 +1,41 @@
-import 'package:belove_app/app/route.dart';
+import 'package:belove_app/app/global_data/global_data.dart';
+import 'package:belove_app/data/models/user.dart';
+import 'package:belove_app/data/services/auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../../../../data/services/database.dart';
 import '../../../../generated/l10n.dart';
-import '../../../core/values/global_key.dart';
+import '../../../global_data/global_key.dart';
+import '../../../route.dart';
 
 class LoginBloc {
   LoginBloc._();
 
   static final ins = LoginBloc._();
 
-  void loginWithEmailPass({required String email, required String password}) {
+  void loginWithEmailPass(
+      {required String email, required String password}) async {
+    //validate
     if (!email.isNotEmpty || !password.isNotEmpty) {
       EasyLoading.showToast(S.current.pleaseenteryouremailorpassword);
       return;
     }
-    navigatorKey.currentState
-        ?.pushNamed(wrapperScreen, arguments: "this is datasss");
+
+    //sign in
+    EasyLoading.show();
+    User? res = await AuthService.ins
+        .signInWithEmailPassword(email: email, password: password);
+    EasyLoading.dismiss();
+
+    //get user data by id
+    if (res != null) {
+      User? u = await DataBaseService.ins.getUserById(res.userId!);
+      if (u != null) {
+        GlobalData.ins.currentUser = u;
+        navigatorKey.currentState!
+            .pushNamedAndRemoveUntil(wrapperScreen, (_) => false);
+      }
+    }
   }
 
   void dispose() {}

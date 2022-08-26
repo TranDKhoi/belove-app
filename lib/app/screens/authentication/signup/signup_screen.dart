@@ -1,6 +1,7 @@
 import 'package:belove_app/app/core/utils/utils.dart';
-import 'package:belove_app/app/core/values/global_key.dart';
+import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/screens/authentication/signup/signup_bloc.dart';
+import 'package:belove_app/app/screens/authentication/signup/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../generated/l10n.dart';
@@ -14,18 +15,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _formKey = GlobalKey<FormState>();
   final _bloc = SignUpBloc.ins;
 
-  final _emailController = TextEditingController();
-  final _passController = TextEditingController();
-  final _rePassController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passController.dispose();
-    _rePassController.dispose();
     _bloc.dispose();
     super.dispose();
   }
@@ -49,65 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 80),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                            hintText: S.of(context).enteryouremail,
-                            prefixIcon: const Icon(Icons.mail_outline_rounded),
-                            prefixIconConstraints:
-                                const BoxConstraints(maxWidth: 20),
-                            suffixIcon: _emailController.text.isNotEmpty
-                                ? GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _emailController.clear();
-                                      });
-                                    },
-                                    child: const Icon(Icons.cancel))
-                                : null,
-                            suffixIconConstraints:
-                                const BoxConstraints(maxWidth: 20),
-                          ),
-                          validator: (val) => _bloc.validateEmail(val),
-                          onChanged: (val) {
-                            setState(() {});
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          controller: _passController,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                            hintText: S.of(context).enteryourpass,
-                            prefixIcon: const Icon(Icons.lock_outline_rounded),
-                            prefixIconConstraints:
-                                const BoxConstraints(maxWidth: 20),
-                          ),
-                          validator: (val) => _bloc.validatePassword(val),
-                        ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          controller: _rePassController,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                            hintText: S.of(context).enteryourpass,
-                            prefixIcon: const Icon(Icons.lock_outline_rounded),
-                            prefixIconConstraints:
-                                const BoxConstraints(maxWidth: 20),
-                          ),
-                          validator: (val) => _bloc.validateRePass(val),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: SignUpForm(formKey: _formKey),
                 ),
               ],
             ),

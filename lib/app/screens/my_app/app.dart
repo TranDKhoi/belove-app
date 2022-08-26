@@ -5,7 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../../../generated/l10n.dart';
-import '../../core/values/global_key.dart';
+import '../../global_data/global_key.dart';
 import '../../screens/my_app/my_app_bloc.dart';
 
 class MyApp extends StatelessWidget {

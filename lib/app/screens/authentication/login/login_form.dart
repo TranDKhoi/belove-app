@@ -39,9 +39,24 @@ class _LoginFormState extends State<LoginForm> {
                     TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.zero,
-                          isDense: true,
-                          hintText: S.of(context).enteryouremail),
+                        contentPadding: EdgeInsets.zero,
+                        isDense: true,
+                        hintText: S.of(context).enteryouremail,
+                        suffixIcon: _emailController.text.isNotEmpty
+                            ? GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _emailController.clear();
+                                  });
+                                },
+                                child: const Icon(Icons.cancel))
+                            : null,
+                        suffixIconConstraints:
+                            const BoxConstraints(maxWidth: 20),
+                      ),
+                      onChanged: (val) {
+                        setState(() {});
+                      },
                     ),
                     const SizedBox(height: 10),
                     TextField(
