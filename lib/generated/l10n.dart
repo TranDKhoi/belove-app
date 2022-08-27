@@ -239,6 +239,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Partner Id`
+  String get partnerId {
+    return Intl.message(
+      'Partner Id',
+      name: 'partnerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Id`
+  String get myId {
+    return Intl.message(
+      'My Id',
+      name: 'myId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied`
+  String get copied {
+    return Intl.message(
+      'Copied',
+      name: 'copied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get usernotfound {
+    return Intl.message(
+      'User not found',
+      name: 'usernotfound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is this your beloved?`
+  String get isthisyourbeloved {
+    return Intl.message(
+      'Is this your beloved?',
+      name: 'isthisyourbeloved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find someone who is single!`
+  String get findsomeonewhoissingle {
+    return Intl.message(
+      'Find someone who is single!',
+      name: 'findsomeonewhoissingle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

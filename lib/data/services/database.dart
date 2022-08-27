@@ -19,14 +19,14 @@ class DataBaseService {
     final data = query.data();
     if (data != null) {
       return User(
-          userId: data["userId"],
-          email: data["email"],
-          birthday: data["birthday"],
-          name: data["name"],
-          gender: data["gender"],
-          partner: User(
-            userId: data["partnerId"],
-          ));
+        userId: data["userId"],
+        email: data["email"],
+        birthday: data["birthday"].toDate(),
+        name: data["name"],
+        gender: data["gender"],
+        partnerId: data["partnerId"],
+        avatar: data["avatar"],
+      );
     }
     return null;
   }
@@ -35,10 +35,11 @@ class DataBaseService {
     await _store.collection("users").doc(user.userId).set({
       "userId": user.userId,
       "email": user.email,
-      "partnerId": user.partner?.userId ?? "",
+      "partnerId": user.partnerId ?? "",
       "name": user.name ?? "",
       "birthday": user.birthday ?? "",
       "gender": user.gender ?? -1,
+      "avatar": user.avatar ?? "",
     }).catchError((e) {
       EasyLoading.showToast(e.toString());
     });
@@ -49,9 +50,9 @@ class DataBaseService {
 
     if (GlobalData.ins.currentUser!.gender == 0) {
       roomId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partner!.userId!;
+          GlobalData.ins.currentUser!.partnerId!;
     } else if (GlobalData.ins.currentUser!.gender == 1) {
-      roomId = GlobalData.ins.currentUser!.partner!.userId! +
+      roomId = GlobalData.ins.currentUser!.partnerId! +
           GlobalData.ins.currentUser!.userId!;
     }
 

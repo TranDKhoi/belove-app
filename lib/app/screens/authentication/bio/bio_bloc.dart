@@ -17,7 +17,7 @@ class BioBloc {
 
   //STREAM=======================================
   final StreamController<String> _birthdayStreamController =
-      StreamController<String>.broadcast();
+      StreamController<String>();
 
   Stream<String> get birthDayStream => _birthdayStreamController.stream;
 
@@ -66,6 +66,7 @@ class BioBloc {
 
   void dispose() {
     _genderStreamController.close();
+    _birthdayStreamController.close();
     birthDay = null;
     name = null;
     gender = 0;
@@ -78,6 +79,8 @@ class BioBloc {
     GlobalData.ins.currentUser!.birthday = birthDay;
     GlobalData.ins.currentUser!.name = name;
     await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+    GlobalData.ins.currentUser = await DataBaseService.ins
+        .getUserById(GlobalData.ins.currentUser!.userId!);
 
     EasyLoading.dismiss();
 

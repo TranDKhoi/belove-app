@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "copied": MessageLookupByLibrary.simpleMessage("Copied"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "enteryourbirthday":
             MessageLookupByLibrary.simpleMessage("Enter your birthday"),
@@ -31,13 +33,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your email"),
         "enteryourpass":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "findsomeonewhoissingle":
+            MessageLookupByLibrary.simpleMessage("Find someone who is single!"),
         "incorrectpassword":
             MessageLookupByLibrary.simpleMessage("Incorrect password"),
+        "isthisyourbeloved":
+            MessageLookupByLibrary.simpleMessage("Is this your beloved?"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "mustbe6": MessageLookupByLibrary.simpleMessage(
             "Password must at least 6 characters"),
+        "myId": MessageLookupByLibrary.simpleMessage("My Id"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
+        "partnerId": MessageLookupByLibrary.simpleMessage("Partner Id"),
         "pleaseenteremail":
             MessageLookupByLibrary.simpleMessage("Please enter the email"),
         "pleaseenterthepassword":
@@ -48,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "usernotfound": MessageLookupByLibrary.simpleMessage("User not found"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youare": MessageLookupByLibrary.simpleMessage("You are"),
         "yourname": MessageLookupByLibrary.simpleMessage("Your name"),
         "yourprofile": MessageLookupByLibrary.simpleMessage("Your profile")

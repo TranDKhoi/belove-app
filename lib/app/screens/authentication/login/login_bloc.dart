@@ -32,6 +32,10 @@ class LoginBloc {
       User? u = await DataBaseService.ins.getUserById(res.userId!);
       if (u != null) {
         GlobalData.ins.currentUser = u;
+        if (u.partnerId != "") {
+          User partner = await DataBaseService.ins.getUserById(u.partnerId!);
+          u.partner = partner;
+        }
         navigatorKey.currentState!
             .pushNamedAndRemoveUntil(wrapperScreen, (_) => false);
       }

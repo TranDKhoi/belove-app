@@ -17,5 +17,15 @@
   "youare": "Bạn là",
   "enteryourbirthday": "Nhập ngày sinh của bạn",
   "yourprofile": "Trang của bạn",
-  "skip": "Bỏ qua"
+  "skip": "Bỏ qua",
+  "partnerId": "Mã đối phương",
+  "myId": "Mã của tôi",
+  "copied": "Đã chép",
+  "confirm": "Xác nhận",
+  "usernotfound": "Người dùng không tồn tại",
+  "isthisyourbeloved": "Có phải là người ấy?",
+  "no": "Không",
+  "yes": "Có",
+  "findsomeonewhoissingle": "Tìm người độc thân ấy!"
+
 }

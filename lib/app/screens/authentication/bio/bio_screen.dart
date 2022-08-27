@@ -18,6 +18,12 @@ class _BioScreenState extends State<BioScreen> {
   final _bloc = BioBloc.ins;
 
   @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(

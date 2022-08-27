@@ -18,7 +18,7 @@ class _WrapperState extends State<Wrapper> {
         onPressed: () {
           DataBaseService.ins.createChatRoom();
         },
-        child: Icon(Icons.mail_outline_rounded),
+        child: const Icon(Icons.mail_outline_rounded),
       ),
     );
   }

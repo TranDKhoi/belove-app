@@ -1,5 +1,6 @@
 class User {
   String? userId;
+  String? partnerId;
   User? partner;
   String? email;
   String? password;
@@ -10,6 +11,7 @@ class User {
 
   User({
     this.userId,
+    this.partnerId,
     this.partner,
     this.email,
     this.password,

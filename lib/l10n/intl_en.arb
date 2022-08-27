@@ -17,5 +17,15 @@
   "youare": "You are",
   "enteryourbirthday": "Enter your birthday",
   "yourprofile": "Your profile",
-  "skip": "Skip"
+  "skip": "Skip",
+  "partnerId": "Partner Id",
+  "myId": "My Id",
+  "copied": "Copied",
+  "confirm": "Confirm",
+  "usernotfound": "User not found",
+  "isthisyourbeloved": "Is this your beloved?",
+  "no": "No",
+  "yes": "Yes",
+  "findsomeonewhoissingle": "Find someone who is single!"
+
 }
