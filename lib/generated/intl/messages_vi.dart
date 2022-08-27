@@ -23,10 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
+        "calendar": MessageLookupByLibrary.simpleMessage("Lịch"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "copied": MessageLookupByLibrary.simpleMessage("Đã chép"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
+        "days": MessageLookupByLibrary.simpleMessage("ngày"),
         "enteryourbirthday":
             MessageLookupByLibrary.simpleMessage("Nhập ngày sinh của bạn"),
         "enteryouremail": MessageLookupByLibrary.simpleMessage("Nhập email"),
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
+        "more": MessageLookupByLibrary.simpleMessage("Thêm"),
         "mustbe6": MessageLookupByLibrary.simpleMessage("Tối thiểu 6 ký tựu"),
         "myId": MessageLookupByLibrary.simpleMessage("Mã của tôi"),
         "no": MessageLookupByLibrary.simpleMessage("Không"),
@@ -51,9 +54,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseenteryourname":
             MessageLookupByLibrary.simpleMessage("Nhập tên của bạn"),
         "signup": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "since": MessageLookupByLibrary.simpleMessage("Kể từ"),
         "skip": MessageLookupByLibrary.simpleMessage("Bỏ qua"),
+        "timeline": MessageLookupByLibrary.simpleMessage("Kỷ niệm"),
         "usernotfound":
             MessageLookupByLibrary.simpleMessage("Người dùng không tồn tại"),
+        "yearanniversary": MessageLookupByLibrary.simpleMessage("năm kỷ niệm"),
         "yes": MessageLookupByLibrary.simpleMessage("Có"),
         "youare": MessageLookupByLibrary.simpleMessage("Bạn là"),
         "yourname": MessageLookupByLibrary.simpleMessage("Tên là"),

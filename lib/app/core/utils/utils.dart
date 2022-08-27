@@ -29,6 +29,27 @@ String dateFormat(DateTime date) {
   return formatTime;
 }
 
+int howManyDayLeft(DateTime day) {
+  var tempDay = DateTime(DateTime.now().year, day.month, day.day);
+  if (tempDay.difference(DateTime.now()).inDays < 0) {
+    return DateTime.now()
+            .difference(
+                DateTime(DateTime.now().year + 1, tempDay.month, tempDay.day))
+            .inDays
+            .abs() +
+        1;
+  }
+  return DateTime.now().difference(tempDay).inDays.abs() + 1;
+}
+
+int countYear(DateTime day) {
+  return (DateTime.now().year - day.year).abs();
+}
+
+int countDay(DateTime beginDay) {
+  return DateTime.now().difference(beginDay).inDays + 1;
+}
+
 class ImageHelper {
   ImageHelper._();
 

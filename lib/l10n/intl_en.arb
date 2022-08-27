@@ -26,6 +26,13 @@
   "isthisyourbeloved": "Is this your beloved?",
   "no": "No",
   "yes": "Yes",
-  "findsomeonewhoissingle": "Find someone who is single!"
+  "findsomeonewhoissingle": "Find someone who is single!",
+  "timeline": "Timeline",
+  "calendar": "Calendar",
+  "more": "More",
+  "since": "Since",
+  "days": "days",
+  "yearanniversary": "years anniversary"
+
 
 }

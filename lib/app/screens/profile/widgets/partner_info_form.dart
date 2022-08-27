@@ -108,6 +108,7 @@ class _PartnerInfoFormState extends State<PartnerInfoForm> {
                 height: 110,
               )
             : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
                     radius: 60,

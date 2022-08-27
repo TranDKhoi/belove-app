@@ -329,6 +329,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Timeline`
+  String get timeline {
+    return Intl.message(
+      'Timeline',
+      name: 'timeline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calendar`
+  String get calendar {
+    return Intl.message(
+      'Calendar',
+      name: 'calendar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get more {
+    return Intl.message(
+      'More',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Since`
+  String get since {
+    return Intl.message(
+      'Since',
+      name: 'since',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days`
+  String get days {
+    return Intl.message(
+      'days',
+      name: 'days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `years anniversary`
+  String get yearanniversary {
+    return Intl.message(
+      'years anniversary',
+      name: 'yearanniversary',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

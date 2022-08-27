@@ -23,7 +23,7 @@ class _LeftColState extends State<LeftCol> {
         Stack(
           alignment: Alignment.bottomRight,
           children: [
-            GlobalData.ins.currentUser!.avatar == null
+            GlobalData.ins.currentUser!.avatar == ""
                 ? Image.asset(
                     GlobalData.ins.currentUser!.gender == 0
                         ? "assets/images/boy.png"
@@ -46,32 +46,31 @@ class _LeftColState extends State<LeftCol> {
                             ),
                           ],
                         );
-                      } else {
-                        if (GlobalData.ins.currentUser!.avatar != "") {
-                          return Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 60,
-                                backgroundImage: Image.asset(
-                                  GlobalData.ins.currentUser!.avatar!,
-                                  fit: BoxFit.contain,
-                                ).image,
-                              ),
-                            ],
-                          );
-                        }
+                      }
+                      if (GlobalData.ins.currentUser!.avatar != "") {
                         return Row(
                           children: [
                             CircleAvatar(
                               radius: 60,
-                              backgroundImage: Image.asset(
-                                "assets/images/boy.png",
+                              backgroundImage: Image.network(
+                                GlobalData.ins.currentUser!.avatar!,
                                 fit: BoxFit.contain,
                               ).image,
                             ),
                           ],
                         );
                       }
+                      return Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 60,
+                            backgroundImage: Image.asset(
+                              "assets/images/boy.png",
+                              fit: BoxFit.contain,
+                            ).image,
+                          ),
+                        ],
+                      );
                     }),
             GestureDetector(
               onTap: () {

@@ -10,6 +10,7 @@ import '../../../data/services/store.dart';
 import '../../../generated/l10n.dart';
 import '../../core/utils/utils.dart';
 import '../../global_data/global_data.dart';
+import '../../global_data/global_key.dart';
 
 class ProfileBloc {
   ProfileBloc._();
@@ -23,7 +24,7 @@ class ProfileBloc {
   Stream<String> get avatarStream => _avatarStreamController.stream;
 
   final StreamController<String> _birthdayStreamController =
-      StreamController<String>();
+      StreamController<String>.broadcast();
 
   Stream<String> get birthDayStream => _birthdayStreamController.stream;
 
@@ -86,6 +87,7 @@ class ProfileBloc {
 
   connectPartner(String id) async {
     try {
+      EasyLoading.show();
       User partner = await DataBaseService.ins.getUserById(id);
       partner.partnerId = GlobalData.ins.currentUser!.userId;
       GlobalData.ins.currentUser!.partnerId = id;
@@ -93,10 +95,11 @@ class ProfileBloc {
 
       await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       await DataBaseService.ins.uploadUserInfo(partner);
-
       navigatorKey.currentState?.pop();
       navigatorKey.currentState?.pop();
+      print(partner.name!);
       _partnerStreamController.sink.add(partner);
+      EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.showToast(e.toString());
     }

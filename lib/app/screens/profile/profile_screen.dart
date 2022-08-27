@@ -1,6 +1,5 @@
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
-import 'package:belove_app/app/screens/profile/profile_bloc.dart';
 import 'package:belove_app/app/screens/profile/widgets/left_col.dart';
 import 'package:belove_app/app/screens/profile/widgets/right_col.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,27 +16,21 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late bool canReturn;
-  final _bloc = ProfileBloc.ins;
+  bool canReturn = true;
 
   @override
   void didChangeDependencies() {
-    canReturn = ModalRoute.of(context)?.settings.arguments as bool;
+    if (ModalRoute.of(context)?.settings.arguments != null) {
+      canReturn = ModalRoute.of(context)?.settings.arguments as bool;
+    }
     super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    _bloc.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        automaticallyImplyLeading: true,
         title: Text(
           S.of(context).yourprofile,
           textAlign: TextAlign.center,
@@ -58,27 +51,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(width: 20),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 80),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const LeftCol(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30)
-                    .copyWith(bottom: 50),
-                child: const Icon(
-                  Icons.favorite,
-                  color: AppColors.primaryColor,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 80),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const LeftCol(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30)
+                      .copyWith(bottom: 50),
+                  child: const Icon(
+                    Icons.favorite,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
-              ),
-              const RightCol(),
-            ],
-          ),
-        ],
+                const RightCol(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:belove_app/app/global_data/global_data.dart';
+import 'package:belove_app/data/models/anniversary.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -46,7 +47,7 @@ class DataBaseService {
   }
 
   createChatRoom() async {
-    String roomId = "empty";
+    String roomId = "";
 
     if (GlobalData.ins.currentUser!.gender == 0) {
       roomId = GlobalData.ins.currentUser!.userId! +
@@ -68,12 +69,57 @@ class DataBaseService {
         "roomId": roomId,
         "users": [
           GlobalData.ins.currentUser!.userId,
-          "2222"
+          GlobalData.ins.currentUser!.partnerId,
           //GlobalData.ins.currentUser!.partner!.userId,
         ],
       }).catchError((e) {
         EasyLoading.showToast(e.toString());
       });
     }
+  }
+
+  dynamic getAnniversary() async {
+    String anniverId = "";
+
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      anniverId = GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    } else if (GlobalData.ins.currentUser!.gender == 1) {
+      anniverId = GlobalData.ins.currentUser!.partnerId! +
+          GlobalData.ins.currentUser!.userId!;
+    }
+    var query = await _store
+        .collection("anniversary")
+        .doc(anniverId)
+        .get()
+        .catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+
+    final data = query.data();
+    if (data != null) {
+      return Anniversary(
+        beginDate: data["beginDate"].toDate(),
+      );
+    }
+    return null;
+  }
+
+  createAnniversary(DateTime day) async {
+    String anniverId = "";
+
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      anniverId = GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    } else if (GlobalData.ins.currentUser!.gender == 1) {
+      anniverId = GlobalData.ins.currentUser!.partnerId! +
+          GlobalData.ins.currentUser!.userId!;
+    }
+
+    await _store.collection("anniversary").doc(anniverId).set({
+      "beginDate": day,
+    }).catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
   }
 }

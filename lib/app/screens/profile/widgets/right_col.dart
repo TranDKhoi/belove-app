@@ -1,8 +1,8 @@
-import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/screens/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../data/models/user.dart';
+import '../../../core/utils/utils.dart';
 import '../../../global_data/global_data.dart';
 import 'connect_partner_form.dart';
 
@@ -61,6 +61,39 @@ class _RightColState extends State<RightCol> {
                   ],
                 );
               }
+              if (GlobalData.ins.currentUser!.partner != null) {
+                if (GlobalData.ins.currentUser!.partner!.avatar != "") {
+                  return Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 60,
+                            backgroundImage: Image.network(
+                              GlobalData.ins.currentUser!.partner!.avatar!,
+                              width: 110,
+                              height: 110,
+                            ).image,
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const ConnectPartnerForm();
+                              });
+                        },
+                        child: const Icon(
+                          Icons.add_circle_outline,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+              }
               return Stack(
                 alignment: Alignment.bottomRight,
                 children: [
@@ -92,23 +125,13 @@ class _RightColState extends State<RightCol> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Text(
-                  GlobalData.ins.currentUser!.partner!.name ?? "...",
+                  snapshot.data!.name!,
                   style: const TextStyle(fontSize: 17),
                 );
               }
-              return const Text(
-                "...",
-                style: TextStyle(fontSize: 17),
-              );
-            }),
-        StreamBuilder<Object>(
-            stream: _bloc.partnerStream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (GlobalData.ins.currentUser!.partner != null) {
                 return Text(
-                  dateFormat(
-                    GlobalData.ins.currentUser!.partner!.birthday!,
-                  ),
+                  GlobalData.ins.currentUser!.partner!.name!,
                   style: const TextStyle(fontSize: 17),
                 );
               }
@@ -117,6 +140,38 @@ class _RightColState extends State<RightCol> {
                 style: TextStyle(fontSize: 17),
               );
             }),
+        GlobalData.ins.currentUser!.partner == null
+            ? const Text(
+                "...",
+                style: TextStyle(fontSize: 17),
+              )
+            : StreamBuilder<Object>(
+                stream: _bloc.partnerStream,
+                initialData: GlobalData.ins.currentUser!.partner,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      dateFormat(
+                        GlobalData.ins.currentUser!.partner!.birthday!,
+                      ),
+                      style: const TextStyle(fontSize: 17),
+                    );
+                  }
+                  if (GlobalData.ins.currentUser!.partner!.birthday != null) {
+                    return Text(
+                      dateFormat(
+                        GlobalData.ins.currentUser!.partner!.birthday!,
+                      ),
+                      style: const TextStyle(fontSize: 17),
+                    );
+                  }
+                  return Text(
+                    dateFormat(
+                      GlobalData.ins.currentUser!.partner!.birthday!,
+                    ),
+                    style: const TextStyle(fontSize: 17),
+                  );
+                }),
       ],
     );
   }

@@ -23,10 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
+        "calendar": MessageLookupByLibrary.simpleMessage("Calendar"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Date of birth"),
+        "days": MessageLookupByLibrary.simpleMessage("days"),
         "enteryourbirthday":
             MessageLookupByLibrary.simpleMessage("Enter your birthday"),
         "enteryouremail":
@@ -42,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
         "mustbe6": MessageLookupByLibrary.simpleMessage(
             "Password must at least 6 characters"),
         "myId": MessageLookupByLibrary.simpleMessage("My Id"),
@@ -56,8 +59,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseenteryourname":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "since": MessageLookupByLibrary.simpleMessage("Since"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "timeline": MessageLookupByLibrary.simpleMessage("Timeline"),
         "usernotfound": MessageLookupByLibrary.simpleMessage("User not found"),
+        "yearanniversary":
+            MessageLookupByLibrary.simpleMessage("years anniversary"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youare": MessageLookupByLibrary.simpleMessage("You are"),
         "yourname": MessageLookupByLibrary.simpleMessage("Your name"),
