@@ -47,7 +47,7 @@ class ProfileBloc {
 
   void changeAvatar() async {
     EasyLoading.show();
-    String? path = await ImageHelper.ins.pickImage();
+    String? path = await ImageHelper.ins.pickAvatar();
     if (path != null) {
       await uploadAvatar(path);
     }

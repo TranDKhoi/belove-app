@@ -56,12 +56,31 @@ class ImageHelper {
   static final ins = ImageHelper._();
   final ImagePicker imgPicker = ImagePicker();
 
-  Future<String?> pickImage() async {
+  Future<String?> pickAvatar() async {
     final XFile? selected =
         await imgPicker.pickImage(source: ImageSource.gallery);
 
     if (selected != null) {
       return await cropImage(selected.path);
+    }
+    return null;
+  }
+
+  Future<List<String>?> pickMultiImage() async {
+    final List<XFile>? selected = await imgPicker.pickMultiImage();
+
+    if (selected != null) {
+      return selected.map((e) => e.path).toList();
+    }
+    return null;
+  }
+
+  Future<String?> pickSingleImage() async {
+    final XFile? selected =
+        await imgPicker.pickImage(source: ImageSource.gallery);
+
+    if (selected != null) {
+      return selected.path;
     }
     return null;
   }

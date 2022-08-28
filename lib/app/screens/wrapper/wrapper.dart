@@ -1,11 +1,12 @@
+import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:belove_app/app/screens/home/home_screen.dart';
-import 'package:belove_app/app/screens/home/widgets/sidebar_bloc.dart';
 import 'package:belove_app/app/screens/profile/profile_bloc.dart';
 import 'package:belove_app/app/screens/profile/profile_screen.dart';
 import 'package:belove_app/app/screens/wrapper/wrapper_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
+import '../sidebar/sidebar_bloc.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _WrapperState extends State<Wrapper> {
   void dispose() {
     ProfileBloc.ins.dispose();
     SideBarBloc.ins.dispose();
+    HomeBloc.ins.dispose();
     super.dispose();
   }
 

@@ -150,7 +150,7 @@ class DataBaseService {
     });
   }
 
-  createPost() async {
+  createPost(title, List<String>? links, DateTime createdAt) async {
     String timeLineId = "";
 
     if (GlobalData.ins.currentUser!.gender == 0) {
@@ -160,13 +160,20 @@ class DataBaseService {
       timeLineId = GlobalData.ins.currentUser!.partnerId! +
           GlobalData.ins.currentUser!.userId!;
     }
+    List<String>? tempLink;
+    if (links != null) {
+      tempLink = links;
+    }
     await _store
         .collection("timeline")
         .doc(timeLineId)
         .collection("posts")
-        .doc(DateTime.now().toString())
+        .doc(createdAt.toString())
         .set({
-      "txt": "txt",
+      "id": createdAt.toString(),
+      "posterId": GlobalData.ins.currentUser!.userId,
+      "title": title ?? "",
+      "images": tempLink,
     }).catchError((e) {
       EasyLoading.showToast(e.toString());
     });
@@ -190,10 +197,20 @@ class DataBaseService {
         .catchError((e) {
       EasyLoading.showToast(e.toString());
     });
-
-    final data = query.docs;
-    if (data.isNotEmpty) {
-      return data.map((e) => Post(id: e.id)).toList();
+    //
+    // final data = query.docs;
+    // if (data.isNotEmpty) {
+    //   return data.map((e) {
+    //     List<String> imgMap = e.data()["images"];
+    //     var listImg = imgMap.map((e) => e.toString()).toList();
+    //     return Post(
+    //       id: e.id,
+    //       posterId: e.get("posterId"),
+    //       createdAt: DateTime.parse(e.get("id")),
+    //       title: e.get("title"),
+    //       images: listImg,
+    //     );
+    //   }).toList();
     }
     return null;
   }

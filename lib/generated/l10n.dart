@@ -409,6 +409,46 @@ class S {
       args: [],
     );
   }
+
+  /// `More post`
+  String get morepost {
+    return Intl.message(
+      'More post',
+      name: 'morepost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What memories do you want to save?`
+  String get whatmemoriesdoyouwanttosave {
+    return Intl.message(
+      'What memories do you want to save?',
+      name: 'whatmemoriesdoyouwanttosave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post`
+  String get post {
+    return Intl.message(
+      'Post',
+      name: 'post',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must post something`
+  String get yourmustpostsomething {
+    return Intl.message(
+      'You must post something',
+      name: 'yourmustpostsomething',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

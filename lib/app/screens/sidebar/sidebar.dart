@@ -1,11 +1,11 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
-import 'package:belove_app/app/screens/home/widgets/sidebar_bloc.dart';
+import 'package:belove_app/app/screens/sidebar/sidebar_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -258,9 +258,7 @@ class _SideBarState extends State<SideBar> {
                           size: 30,
                         ),
                         title: Text(
-                          countYear(GlobalData.ins.ourDay!.beginDate!)
-                                  .toString() +
-                              S.of(context).yearanniversary,
+                          "${countYear(GlobalData.ins.ourDay!.beginDate!)} ${S.of(context).yearanniversary}",
                           style: const TextStyle(
                             fontSize: 20,
                           ),
@@ -285,9 +283,7 @@ class _SideBarState extends State<SideBar> {
                         size: 30,
                       ),
                       title: Text(
-                        countYear(GlobalData.ins.ourDay!.beginDate!)
-                                .toString() +
-                            S.of(context).yearanniversary,
+                        "${countYear(GlobalData.ins.ourDay!.beginDate!)} ${S.of(context).yearanniversary}",
                         style: const TextStyle(
                           fontSize: 20,
                         ),

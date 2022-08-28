@@ -12,7 +12,7 @@
   "incorrectpassword": "Incorrect password",
   "mustbe6": "Password must at least 6 characters",
   "yourname": "Your name",
-  "pleaseenteryourname":"Please enter your name",
+  "pleaseenteryourname": "Please enter your name",
   "dateofbirth": "Date of birth",
   "youare": "You are",
   "enteryourbirthday": "Enter your birthday",
@@ -34,7 +34,10 @@
   "days": "days",
   "yearanniversary": "years anniversary",
   "verifyyouremail": "Check your email to verify account",
-  "Afterverified": "After verified, you can go back and log in with this account"
-
+  "Afterverified": "After verified, you can go back and log in with this account",
+  "morepost": "More post",
+  "whatmemoriesdoyouwanttosave": "What memories do you want to save?",
+  "post": "Post",
+  "yourmustpostsomething": "You must post something"
 
 }

@@ -25,4 +25,22 @@ class StoreService {
       EasyLoading.showToast(e.toString());
     }
   }
+
+  uploadPostImages(List<File> listImg, createdAt) async {
+    try {
+      List<String> downloadUrls = [];
+      await Future.forEach(listImg, (File image) async {
+        Reference ref = _store.ref().child(
+            "post/${GlobalData.ins.currentUser!.userId}${GlobalData.ins.currentUser!.partnerId}/$createdAt/${DateTime.now().toString()}");
+        final UploadTask uploadTask = ref.putFile(image);
+        final TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
+        final url = await taskSnapshot.ref.getDownloadURL();
+        downloadUrls.add(url);
+      });
+
+      return downloadUrls;
+    } catch (e) {
+      EasyLoading.showToast(e.toString());
+    }
+  }
 }

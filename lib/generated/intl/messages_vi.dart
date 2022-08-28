@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "more": MessageLookupByLibrary.simpleMessage("Thêm"),
+        "morepost": MessageLookupByLibrary.simpleMessage("Bài đăng"),
         "mustbe6": MessageLookupByLibrary.simpleMessage("Tối thiểu 6 ký tựu"),
         "myId": MessageLookupByLibrary.simpleMessage("Mã của tôi"),
         "no": MessageLookupByLibrary.simpleMessage("Không"),
@@ -55,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập mật khẩu"),
         "pleaseenteryourname":
             MessageLookupByLibrary.simpleMessage("Nhập tên của bạn"),
+        "post": MessageLookupByLibrary.simpleMessage("Đăng bài"),
         "signup": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "since": MessageLookupByLibrary.simpleMessage("Kể từ"),
         "skip": MessageLookupByLibrary.simpleMessage("Bỏ qua"),
@@ -63,9 +65,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Người dùng không tồn tại"),
         "verifyyouremail": MessageLookupByLibrary.simpleMessage(
             "Kiểm tra email và xác minh tài khoản"),
+        "whatmemoriesdoyouwanttosave":
+            MessageLookupByLibrary.simpleMessage("Bạn muốn lưu kỷ niệm gì?"),
         "yearanniversary": MessageLookupByLibrary.simpleMessage("năm kỷ niệm"),
         "yes": MessageLookupByLibrary.simpleMessage("Có"),
         "youare": MessageLookupByLibrary.simpleMessage("Bạn là"),
+        "yourmustpostsomething":
+            MessageLookupByLibrary.simpleMessage("Bạn nên đăng gì đó"),
         "yourname": MessageLookupByLibrary.simpleMessage("Tên là"),
         "yourprofile": MessageLookupByLibrary.simpleMessage("Trang của bạn")
       };

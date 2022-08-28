@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
+        "morepost": MessageLookupByLibrary.simpleMessage("More post"),
         "mustbe6": MessageLookupByLibrary.simpleMessage(
             "Password must at least 6 characters"),
         "myId": MessageLookupByLibrary.simpleMessage("My Id"),
@@ -60,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your email or password"),
         "pleaseenteryourname":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
+        "post": MessageLookupByLibrary.simpleMessage("Post"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign up"),
         "since": MessageLookupByLibrary.simpleMessage("Since"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
@@ -67,10 +69,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "usernotfound": MessageLookupByLibrary.simpleMessage("User not found"),
         "verifyyouremail": MessageLookupByLibrary.simpleMessage(
             "Check your email to verify account"),
+        "whatmemoriesdoyouwanttosave": MessageLookupByLibrary.simpleMessage(
+            "What memories do you want to save?"),
         "yearanniversary":
             MessageLookupByLibrary.simpleMessage("years anniversary"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youare": MessageLookupByLibrary.simpleMessage("You are"),
+        "yourmustpostsomething":
+            MessageLookupByLibrary.simpleMessage("You must post something"),
         "yourname": MessageLookupByLibrary.simpleMessage("Your name"),
         "yourprofile": MessageLookupByLibrary.simpleMessage("Your profile")
       };
