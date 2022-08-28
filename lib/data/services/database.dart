@@ -1,5 +1,6 @@
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/data/models/anniversary.dart';
+import 'package:belove_app/data/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -19,10 +20,14 @@ class DataBaseService {
 
     final data = query.data();
     if (data != null) {
+      DateTime? tempBirth;
+      if (data["birthday"] != "") {
+        tempBirth = data["birthday"].toDate();
+      }
       return User(
         userId: data["userId"],
         email: data["email"],
-        birthday: data["birthday"].toDate(),
+        birthday: tempBirth,
         name: data["name"],
         gender: data["gender"],
         partnerId: data["partnerId"],
@@ -121,5 +126,75 @@ class DataBaseService {
     }).catchError((e) {
       EasyLoading.showToast(e.toString());
     });
+  }
+
+  createTimeLine() async {
+    String timeLineId = "";
+
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      timeLineId = GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    } else if (GlobalData.ins.currentUser!.gender == 1) {
+      timeLineId = GlobalData.ins.currentUser!.partnerId! +
+          GlobalData.ins.currentUser!.userId!;
+    }
+    await _store
+        .collection("timeline")
+        .doc(timeLineId)
+        .collection("posts")
+        .doc("initDoc")
+        .set({
+      "txt": "txt",
+    }).catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+  }
+
+  createPost() async {
+    String timeLineId = "";
+
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      timeLineId = GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    } else if (GlobalData.ins.currentUser!.gender == 1) {
+      timeLineId = GlobalData.ins.currentUser!.partnerId! +
+          GlobalData.ins.currentUser!.userId!;
+    }
+    await _store
+        .collection("timeline")
+        .doc(timeLineId)
+        .collection("posts")
+        .doc(DateTime.now().toString())
+        .set({
+      "txt": "txt",
+    }).catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+  }
+
+  Future getPosts() async {
+    String timeLineId = "";
+
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      timeLineId = GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    } else if (GlobalData.ins.currentUser!.gender == 1) {
+      timeLineId = GlobalData.ins.currentUser!.partnerId! +
+          GlobalData.ins.currentUser!.userId!;
+    }
+    var query = await _store
+        .collection("timeline")
+        .doc(timeLineId)
+        .collection("posts")
+        .get()
+        .catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+
+    final data = query.docs;
+    if (data.isNotEmpty) {
+      return data.map((e) => Post(id: e.id)).toList();
+    }
+    return null;
   }
 }

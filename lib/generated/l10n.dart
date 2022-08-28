@@ -389,6 +389,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Check your email to verify account`
+  String get verifyyouremail {
+    return Intl.message(
+      'Check your email to verify account',
+      name: 'verifyyouremail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `After verified, you can go back and log in with this account`
+  String get Afterverified {
+    return Intl.message(
+      'After verified, you can go back and log in with this account',
+      name: 'Afterverified',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

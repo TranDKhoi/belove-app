@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Afterverified": MessageLookupByLibrary.simpleMessage(
+            "Sau khi xác minh, bạn có thể trở về và đăng nhập bằng tài khoản trên"),
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
         "calendar": MessageLookupByLibrary.simpleMessage("Lịch"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
@@ -59,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeline": MessageLookupByLibrary.simpleMessage("Kỷ niệm"),
         "usernotfound":
             MessageLookupByLibrary.simpleMessage("Người dùng không tồn tại"),
+        "verifyyouremail": MessageLookupByLibrary.simpleMessage(
+            "Kiểm tra email và xác minh tài khoản"),
         "yearanniversary": MessageLookupByLibrary.simpleMessage("năm kỷ niệm"),
         "yes": MessageLookupByLibrary.simpleMessage("Có"),
         "youare": MessageLookupByLibrary.simpleMessage("Bạn là"),

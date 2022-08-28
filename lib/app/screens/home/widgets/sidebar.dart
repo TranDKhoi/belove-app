@@ -218,6 +218,7 @@ class _SideBarState extends State<SideBar> {
                 ),
               ),
             ),
+            const Divider(),
             if (GlobalData.ins.currentUser!.partner != null)
               ListTile(
                 isThreeLine: true,
@@ -243,6 +244,7 @@ class _SideBarState extends State<SideBar> {
                   ),
                 ),
               ),
+            const Divider(),
             if (GlobalData.ins.ourDay != null)
               StreamBuilder<int>(
                   stream: _bloc.beginDayStream,
@@ -302,6 +304,7 @@ class _SideBarState extends State<SideBar> {
                       ),
                     );
                   }),
+            const Divider(),
           ],
         ),
       ),

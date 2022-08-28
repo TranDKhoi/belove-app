@@ -2,6 +2,8 @@ import 'package:belove_app/data/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../../generated/l10n.dart';
+
 class AuthService {
   AuthService._();
 
@@ -24,6 +26,14 @@ class AuthService {
       fba.UserCredential res = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       fba.User? firebaseUser = res.user;
+
+      if (firebaseUser!.emailVerified == false) {
+        await firebaseUser.sendEmailVerification();
+        EasyLoading.showToast(S.current.verifyyouremail,
+            duration: const Duration(seconds: 5));
+        return;
+      }
+
       return _userFromFireBase(firebaseUser);
     } catch (e) {
       EasyLoading.showToast(e.toString());
@@ -36,6 +46,10 @@ class AuthService {
       fba.UserCredential res = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       fba.User? firebaseUser = res.user;
+
+      await firebaseUser!.sendEmailVerification();
+      EasyLoading.showToast(S.current.verifyyouremail,
+          duration: const Duration(seconds: 5));
 
       return _userFromFireBase(firebaseUser);
     } catch (e) {

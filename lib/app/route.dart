@@ -5,7 +5,7 @@ import 'package:belove_app/app/screens/profile/profile_screen.dart';
 import 'package:belove_app/app/screens/wrapper/wrapper.dart';
 
 final appRoute = {
-  mainAuthScreen: (navigatorKey) => const MainAuthScreen(),
+  mainAuthScreen: (navigatorKey) => MainAuthScreen(),
   wrapperScreen: (navigatorKey) => const Wrapper(),
   signUpScreen: (navigatorKey) => const SignUpScreen(),
   bioScreen: (navigatorKey) => const BioScreen(),

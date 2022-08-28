@@ -32,7 +32,9 @@
   "more": "More",
   "since": "Since",
   "days": "days",
-  "yearanniversary": "years anniversary"
+  "yearanniversary": "years anniversary",
+  "verifyyouremail": "Check your email to verify account",
+  "Afterverified": "After verified, you can go back and log in with this account"
 
 
 }

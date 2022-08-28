@@ -1,6 +1,4 @@
 import 'package:belove_app/app/global_data/global_data.dart';
-import 'package:belove_app/app/global_data/global_key.dart';
-import 'package:belove_app/app/route.dart';
 import 'package:belove_app/data/models/user.dart';
 import 'package:belove_app/data/services/database.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +18,9 @@ class SignUpBloc {
 
   //EVENTS=====================================
 
-  void validateSignUpForm(GlobalKey<FormState> key) {
+  void validateSignUpForm(GlobalKey<FormState> key) async {
     if (key.currentState!.validate()) {
-      signUpWithEmail();
+      await signUpWithEmail();
     }
   }
 
@@ -64,8 +62,6 @@ class SignUpBloc {
       await DataBaseService.ins.uploadUserInfo(res);
       GlobalData.ins.currentUser = res;
       EasyLoading.dismiss();
-      navigatorKey.currentState
-          ?.pushNamedAndRemoveUntil(bioScreen, (_) => false);
     }
   }
 

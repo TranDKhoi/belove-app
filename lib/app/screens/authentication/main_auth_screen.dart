@@ -2,13 +2,16 @@ import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
+import 'package:belove_app/app/screens/authentication/login/login_bloc.dart';
 import 'package:belove_app/app/screens/authentication/login/login_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
 
 class MainAuthScreen extends StatelessWidget {
-  const MainAuthScreen({Key? key}) : super(key: key);
+  MainAuthScreen({Key? key}) : super(key: key);
+
+  final _bloc = LoginBloc.ins;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class MainAuthScreen extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: Image.asset(
-                    "assets/images/wallpaper.jpg",
+                    "assets/images/login_wallpaper.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -94,22 +97,6 @@ class MainAuthScreen extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xff4267B2),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      S.of(context).loginwithfb,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
                 ),
               ),
             ],

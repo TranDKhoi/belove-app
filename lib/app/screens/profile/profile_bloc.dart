@@ -95,9 +95,9 @@ class ProfileBloc {
 
       await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       await DataBaseService.ins.uploadUserInfo(partner);
+      await DataBaseService.ins.createTimeLine();
       navigatorKey.currentState?.pop();
       navigatorKey.currentState?.pop();
-      print(partner.name!);
       _partnerStreamController.sink.add(partner);
       EasyLoading.dismiss();
     } catch (e) {

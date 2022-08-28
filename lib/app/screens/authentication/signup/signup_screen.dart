@@ -47,6 +47,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 80),
                   child: SignUpForm(formKey: _formKey),
                 ),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 80),
+                  child: Text(
+                    S.of(context).Afterverified,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ],
             ),
           ),

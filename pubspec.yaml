@@ -86,8 +86,8 @@ flutter:
   fonts:
     - family: Arima
       fonts:
-       - asset: assets/fonts/Arima-Regular.ttf
-         weight: 500
+        - asset: assets/fonts/Arima-Regular.ttf
+          weight: 500
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

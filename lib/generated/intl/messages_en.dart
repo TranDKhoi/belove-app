@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Afterverified": MessageLookupByLibrary.simpleMessage(
+            "After verified, you can go back and log in with this account"),
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
         "calendar": MessageLookupByLibrary.simpleMessage("Calendar"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -63,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "timeline": MessageLookupByLibrary.simpleMessage("Timeline"),
         "usernotfound": MessageLookupByLibrary.simpleMessage("User not found"),
+        "verifyyouremail": MessageLookupByLibrary.simpleMessage(
+            "Check your email to verify account"),
         "yearanniversary":
             MessageLookupByLibrary.simpleMessage("years anniversary"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
