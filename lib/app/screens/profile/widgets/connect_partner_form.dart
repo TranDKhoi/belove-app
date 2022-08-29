@@ -3,6 +3,7 @@ import 'package:belove_app/app/screens/profile/widgets/partner_info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../core/values/color.dart';
@@ -68,7 +69,7 @@ class _ConnectPartnerFormState extends State<ConnectPartnerForm> {
                                   text: GlobalData.ins.currentUser!.userId));
                               EasyLoading.showToast(S.of(context).copied);
                             },
-                            child: const Icon(Icons.copy_rounded)),
+                            child: const Icon(Ionicons.copy_outline)),
                         suffixIconConstraints:
                             const BoxConstraints(maxWidth: 20),
                       ),
@@ -99,7 +100,7 @@ class _ConnectPartnerFormState extends State<ConnectPartnerForm> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(
-                        Icons.check_circle_outline_rounded,
+                        Ionicons.checkmark_circle_outline,
                         color: AppColors.primaryColor,
                       ),
                       const SizedBox(width: 5),

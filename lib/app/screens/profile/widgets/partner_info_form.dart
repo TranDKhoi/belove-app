@@ -1,6 +1,7 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../data/models/user.dart';
 import '../../../../generated/l10n.dart';
@@ -72,7 +73,7 @@ class _PartnerInfoFormState extends State<PartnerInfoForm> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.check_circle_outline_rounded,
+                            Ionicons.checkmark_circle_outline,
                             color: AppColors.primaryColor,
                           ),
                           const SizedBox(width: 5),

@@ -1,5 +1,6 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../data/models/user.dart';
 import '../../../../generated/l10n.dart';
@@ -17,7 +18,7 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
-    return             Container(
+    return Container(
       width: context.screenSize.width,
       height: context.screenSize.height / 2.5,
       decoration: BoxDecoration(
@@ -65,8 +66,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                         return Row(
                           children: [
                             Text(
-                              countDay(
-                                  GlobalData.ins.ourDay!.beginDate!)
+                              countDay(GlobalData.ins.ourDay!.beginDate!)
                                   .toString(),
                               style: const TextStyle(
                                 color: Colors.white,
@@ -125,7 +125,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Icon(
-                          Icons.favorite,
+                          Ionicons.heart,
                           color: Colors.white,
                         ),
                       ),
@@ -141,11 +141,9 @@ class _HomeHeaderState extends State<HomeHeader> {
                                 ),
                               );
                             }
-                            if (GlobalData.ins.currentUser!.partner !=
-                                null) {
+                            if (GlobalData.ins.currentUser!.partner != null) {
                               return Text(
-                                GlobalData
-                                    .ins.currentUser!.partner!.name!,
+                                GlobalData.ins.currentUser!.partner!.name!,
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -169,6 +167,5 @@ class _HomeHeaderState extends State<HomeHeader> {
         ),
       ),
     );
-
   }
 }

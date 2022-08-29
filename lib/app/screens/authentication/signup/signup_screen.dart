@@ -3,6 +3,7 @@ import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/screens/authentication/signup/signup_bloc.dart';
 import 'package:belove_app/app/screens/authentication/signup/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../core/values/color.dart';
@@ -79,7 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.cancel_outlined,
+                            Ionicons.close_circle_outline,
                             size: 15,
                             color: AppColors.primaryColor,
                           ),
@@ -111,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.check_circle_outline_rounded,
+                            Ionicons.checkmark_circle_outline,
                             size: 15,
                           ),
                           const SizedBox(width: 5),

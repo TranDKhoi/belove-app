@@ -519,6 +519,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Let's send the first message to your beloved!`
+  String get sendyourfirst {
+    return Intl.message(
+      'Let\'s send the first message to your beloved!',
+      name: 'sendyourfirst',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

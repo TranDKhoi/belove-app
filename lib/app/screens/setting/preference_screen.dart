@@ -1,6 +1,7 @@
 import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/screens/my_app/my_app_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 import '../../global_data/global_data.dart';
@@ -33,7 +34,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
                       MyAppBloc.ins.changeDarkMode(val);
                     },
                     secondary: const Icon(
-                      Icons.dark_mode_outlined,
+                      Ionicons.moon_outline,
                       color: AppColors.primaryColor,
                     ),
                     title: Text(S.of(context).darkmode),
@@ -62,7 +63,7 @@ class _PreferenceScreenState extends State<PreferenceScreen> {
                       }
                     },
                     secondary: const Icon(
-                      Icons.dark_mode_outlined,
+                      Ionicons.language_outline,
                       color: AppColors.primaryColor,
                     ),
                     title: Text(S.of(context).language),

@@ -4,6 +4,7 @@ import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/app/screens/sidebar/sidebar_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -253,7 +254,7 @@ class _SideBarState extends State<SideBar> {
                       return ListTile(
                         isThreeLine: true,
                         leading: const Icon(
-                          Icons.calendar_month_outlined,
+                          Ionicons.gift_outline,
                           color: AppColors.primaryColor,
                           size: 30,
                         ),
@@ -278,7 +279,7 @@ class _SideBarState extends State<SideBar> {
                     return ListTile(
                       isThreeLine: true,
                       leading: const Icon(
-                        Icons.calendar_month_outlined,
+                        Ionicons.gift_outline,
                         color: AppColors.primaryColor,
                         size: 30,
                       ),

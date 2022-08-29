@@ -2,6 +2,7 @@ import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/screens/profile/profile_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../global_data/global_data.dart';
@@ -77,7 +78,7 @@ class _LeftColState extends State<LeftCol> {
                 _bloc.changeAvatar();
               },
               child: const Icon(
-                Icons.camera_alt_outlined,
+                Ionicons.camera_outline,
               ),
             ),
           ],

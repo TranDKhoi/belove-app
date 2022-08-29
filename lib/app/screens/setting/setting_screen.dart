@@ -4,6 +4,7 @@ import 'package:belove_app/app/screens/setting/setting_bloc.dart';
 import 'package:belove_app/app/screens/setting/widgets/logout_form.dart';
 import 'package:belove_app/app/screens/setting/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -35,14 +36,14 @@ class _SettingScreenState extends State<SettingScreen> {
             onTap: () {
               navigatorKey.currentState?.pushNamed(profileScreen);
             },
-            icon: Icons.account_circle_outlined,
+            icon: Ionicons.happy_outline,
             title: S.of(context).profile,
           ),
           SettingItem(
             onTap: () {
               navigatorKey.currentState?.pushNamed(preferenceScreen);
             },
-            icon: Icons.settings_outlined,
+            icon: Ionicons.settings_outline,
             title: S.of(context).setting,
           ),
           SettingItem(
@@ -53,7 +54,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     return const LogOutForm();
                   });
             },
-            icon: Icons.logout_outlined,
+            icon: Ionicons.exit_outline,
             title: S.of(context).logout,
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:belove_app/app/screens/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../data/models/user.dart';
 import '../../../core/utils/utils.dart';
@@ -55,7 +56,7 @@ class _RightColState extends State<RightCol> {
                             });
                       },
                       child: const Icon(
-                        Icons.add_circle_outline,
+                        Ionicons.add_circle_outline,
                       ),
                     ),
                   ],
@@ -87,7 +88,7 @@ class _RightColState extends State<RightCol> {
                               });
                         },
                         child: const Icon(
-                          Icons.add_circle_outline,
+                          Ionicons.add_circle_outline,
                         ),
                       ),
                     ],
@@ -113,7 +114,7 @@ class _RightColState extends State<RightCol> {
                           });
                     },
                     child: const Icon(
-                      Icons.add_circle_outline,
+                      Ionicons.add_circle_outline,
                     ),
                   ),
                 ],

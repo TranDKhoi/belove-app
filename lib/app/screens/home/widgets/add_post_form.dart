@@ -5,6 +5,7 @@ import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/screens/home/widgets/add_post_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../core/values/color.dart';
@@ -77,7 +78,7 @@ class _AddPostFormState extends State<AddPostForm> {
                       onTap: () {
                         navigatorKey.currentState?.pop();
                       },
-                      child: const Icon(Icons.close_outlined),
+                      child: const Icon(Ionicons.close_outline),
                     ),
                   ],
                 ),
@@ -143,7 +144,8 @@ class _AddPostFormState extends State<AddPostForm> {
                                             onTap: () {
                                               _bloc.removeImage(i);
                                             },
-                                            child: const Icon(Icons.close)),
+                                            child: const Icon(
+                                                Ionicons.close_outline)),
                                       ],
                                     ),
                                   ),
@@ -169,7 +171,7 @@ class _AddPostFormState extends State<AddPostForm> {
                                 ),
                               ),
                               child: const Icon(
-                                Icons.image_outlined,
+                                Ionicons.image_outline,
                                 color: Colors.grey,
                               ),
                             ),
@@ -192,7 +194,7 @@ class _AddPostFormState extends State<AddPostForm> {
                             ),
                           ),
                           child: const Icon(
-                            Icons.image_outlined,
+                            Ionicons.image_outline,
                             color: Colors.grey,
                           ),
                         ),
@@ -205,7 +207,7 @@ class _AddPostFormState extends State<AddPostForm> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    await _bloc.createNewPost(_titleController.text);
+                    await _bloc.createNewPost(_titleController.text.trim());
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
@@ -213,7 +215,7 @@ class _AddPostFormState extends State<AddPostForm> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(
-                          Icons.check_circle_outline_rounded,
+                          Ionicons.checkmark_circle_outline,
                           color: AppColors.primaryColor,
                         ),
                         const SizedBox(width: 5),

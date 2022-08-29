@@ -96,6 +96,7 @@ class ProfileBloc {
       await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       await DataBaseService.ins.uploadUserInfo(partner);
       await DataBaseService.ins.createTimeLine();
+      await DataBaseService.ins.createChatRoom();
       navigatorKey.currentState?.pop();
       navigatorKey.currentState?.pop();
       _partnerStreamController.sink.add(partner);

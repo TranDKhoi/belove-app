@@ -58,7 +58,5 @@ class MyAppBloc {
   }
 
   void dispose() {
-    _languageState.close();
-    _darkModeStreamController.close();
   }
 }

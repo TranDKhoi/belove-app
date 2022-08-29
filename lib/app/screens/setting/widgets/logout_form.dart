@@ -1,5 +1,6 @@
 import 'package:belove_app/app/screens/setting/setting_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../core/values/color.dart';
@@ -54,7 +55,7 @@ class LogOutForm extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.check_circle_outline_rounded,
+                            Ionicons.checkmark_circle_outline,
                             color: AppColors.primaryColor,
                           ),
                           const SizedBox(width: 5),

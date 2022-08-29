@@ -1,5 +1,6 @@
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -42,7 +43,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
               onTap: () {
                 navigatorKey.currentState?.pop();
               },
-              child: const Icon(Icons.close)),
+              child: const Icon(Ionicons.close_outline)),
         ),
       ),
       body: PhotoViewGallery.builder(

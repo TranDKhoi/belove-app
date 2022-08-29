@@ -4,6 +4,7 @@ import 'package:belove_app/data/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../models/message.dart';
 import '../models/user.dart';
 
 class DataBaseService {
@@ -14,6 +15,16 @@ class DataBaseService {
   final _store = FirebaseFirestore.instance;
 
   var lastDoc;
+  var lastMess;
+
+  String _getCoupleId() {
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      return GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    }
+    return GlobalData.ins.currentUser!.partnerId! +
+        GlobalData.ins.currentUser!.userId!;
+  }
 
   dynamic getUserById(String id) async {
     var query = await _store.collection("users").doc(id).get().catchError((e) {
@@ -54,47 +65,69 @@ class DataBaseService {
   }
 
   createChatRoom() async {
-    String roomId = "";
-
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      roomId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      roomId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
+    String roomId = _getCoupleId();
 
     //check if room is existed
     var query =
-        await _store.collection("room").doc(roomId).get().catchError((e) {
+        await _store.collection("chat_room").doc(roomId).get().catchError((e) {
       EasyLoading.showToast(e.toString());
     });
 
-    final data = query.data();
-    if (data == null) {
-      await _store.collection("room").doc(roomId).set({
-        "roomId": roomId,
-        "users": [
-          GlobalData.ins.currentUser!.userId,
-          GlobalData.ins.currentUser!.partnerId,
-          //GlobalData.ins.currentUser!.partner!.userId,
-        ],
+    if (!query.exists) {
+      await _store
+          .collection("chat_room")
+          .doc(roomId)
+          .collection("message")
+          .doc("initMessage")
+          .set({
+        "init": "init",
       }).catchError((e) {
         EasyLoading.showToast(e.toString());
       });
     }
   }
 
-  dynamic getAnniversary() async {
-    String anniverId = "";
+  sendMessage(Message newMess, DateTime createdAt) async {
+    String roomId = _getCoupleId();
 
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      anniverId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      anniverId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
+    await _store
+        .collection("chat_room")
+        .doc(roomId)
+        .collection("message")
+        .doc(createdAt.toString())
+        .set({
+      "id": createdAt.toString(),
+      "message": newMess.message,
+      "senderId": GlobalData.ins.currentUser!.userId,
+    }).catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> listenerMessage() {
+    var roomid = _getCoupleId();
+
+    return FirebaseFirestore.instance
+        .collection('chat_room')
+        .doc(roomid)
+        .collection("message")
+        .orderBy("id", descending: true)
+        .snapshots();
+  }
+
+  createAnniversary(DateTime day) async {
+    String anniverId = _getCoupleId();
+
+    await _store.collection("anniversary").doc(anniverId).set({
+      "beginDate": day,
+    }).catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+  }
+
+  getAnniversary() async {
+    String anniverId = _getCoupleId();
+
     var query = await _store
         .collection("anniversary")
         .doc(anniverId)
@@ -112,56 +145,24 @@ class DataBaseService {
     return null;
   }
 
-  createAnniversary(DateTime day) async {
-    String anniverId = "";
-
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      anniverId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      anniverId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
-
-    await _store.collection("anniversary").doc(anniverId).set({
-      "beginDate": day,
-    }).catchError((e) {
-      EasyLoading.showToast(e.toString());
-    });
-  }
-
   createTimeLine() async {
-    String timeLineId = "";
+    String timeLineId = _getCoupleId();
 
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      timeLineId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      timeLineId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
     await _store
         .collection("timeline")
         .doc(timeLineId)
         .collection("posts")
         .doc("initDoc")
         .set({
-      "txt": "txt",
+      "error": "error",
     }).catchError((e) {
       EasyLoading.showToast(e.toString());
     });
   }
 
   createPost(title, List<String>? links, DateTime createdAt) async {
-    String timeLineId = "";
+    String timeLineId = _getCoupleId();
 
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      timeLineId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      timeLineId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
     List<String>? tempLink;
     if (links != null) {
       tempLink = links;
@@ -182,15 +183,8 @@ class DataBaseService {
   }
 
   Future getPosts() async {
-    String timeLineId = "";
+    String timeLineId = _getCoupleId();
 
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      timeLineId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      timeLineId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
     var query = await _store
         .collection("timeline")
         .doc(timeLineId)
@@ -226,15 +220,7 @@ class DataBaseService {
   }
 
   Future getMorePosts() async {
-    String timeLineId = "";
-
-    if (GlobalData.ins.currentUser!.gender == 0) {
-      timeLineId = GlobalData.ins.currentUser!.userId! +
-          GlobalData.ins.currentUser!.partnerId!;
-    } else if (GlobalData.ins.currentUser!.gender == 1) {
-      timeLineId = GlobalData.ins.currentUser!.partnerId! +
-          GlobalData.ins.currentUser!.userId!;
-    }
+    String timeLineId = _getCoupleId();
 
     final nextQuery = await _store
         .collection("timeline")

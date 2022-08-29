@@ -2,6 +2,7 @@ import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/screens/authentication/bio/bio_bloc.dart';
 import 'package:belove_app/app/screens/authentication/bio/widgets/bio_form.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../core/values/color.dart';
@@ -71,7 +72,7 @@ class _BioScreenState extends State<BioScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.check_circle_outline_rounded,
+                            Ionicons.checkmark_circle_outline,
                             size: 15,
                           ),
                           const SizedBox(width: 5),

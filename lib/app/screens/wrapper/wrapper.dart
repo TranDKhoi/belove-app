@@ -5,6 +5,7 @@ import 'package:belove_app/app/screens/setting/setting_bloc.dart';
 import 'package:belove_app/app/screens/setting/setting_screen.dart';
 import 'package:belove_app/app/screens/wrapper/wrapper_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 import '../sidebar/sidebar_bloc.dart';
@@ -68,15 +69,15 @@ class _WrapperState extends State<Wrapper> {
                 elevation: 5,
                 items: [
                   BottomNavigationBarItem(
-                    icon: const Icon(Icons.home_outlined),
+                    icon: const Icon(Ionicons.home_outline),
                     label: S.of(context).timeline,
                   ),
                   BottomNavigationBarItem(
-                    icon: const Icon(Icons.calendar_month_outlined),
+                    icon: const Icon(Ionicons.calendar_outline),
                     label: S.of(context).calendar,
                   ),
                   BottomNavigationBarItem(
-                    icon: const Icon(Icons.grid_view_outlined),
+                    icon: const Icon(Ionicons.grid_outline),
                     label: S.of(context).more,
                   ),
                 ],

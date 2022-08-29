@@ -3,6 +3,7 @@ import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/screens/authentication/bio/bio_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../bio_bloc.dart';
@@ -79,7 +80,7 @@ class _BioFormState extends State<BioForm> {
               isDense: true,
               contentPadding: EdgeInsets.zero,
               hintText: S.of(context).yourname,
-              prefixIcon: const Icon(Icons.person_outline),
+              prefixIcon: const Icon(Ionicons.person_outline),
               prefixIconConstraints: const BoxConstraints(maxWidth: 20),
               suffixIcon: _nameController.text.isNotEmpty
                   ? GestureDetector(
@@ -88,7 +89,7 @@ class _BioFormState extends State<BioForm> {
                           _nameController.clear();
                         });
                       },
-                      child: const Icon(Icons.cancel))
+                      child: const Icon(Ionicons.close_circle_sharp))
                   : null,
               suffixIconConstraints: const BoxConstraints(maxWidth: 20),
             ),

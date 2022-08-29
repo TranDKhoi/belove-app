@@ -1,5 +1,6 @@
 import 'package:belove_app/app/screens/authentication/signup/signup_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../../generated/l10n.dart';
 
@@ -40,7 +41,7 @@ class _SignUpFormState extends State<SignUpForm> {
               isDense: true,
               contentPadding: EdgeInsets.zero,
               hintText: S.of(context).enteryouremail,
-              prefixIcon: const Icon(Icons.mail_outline_rounded),
+              prefixIcon: const Icon(Ionicons.mail_outline),
               prefixIconConstraints: const BoxConstraints(maxWidth: 20),
               suffixIcon: _emailController.text.isNotEmpty
                   ? GestureDetector(
@@ -66,7 +67,7 @@ class _SignUpFormState extends State<SignUpForm> {
               isDense: true,
               contentPadding: EdgeInsets.zero,
               hintText: S.of(context).enteryourpass,
-              prefixIcon: const Icon(Icons.lock_outline_rounded),
+              prefixIcon: const Icon(Ionicons.lock_closed_outline),
               prefixIconConstraints: const BoxConstraints(maxWidth: 20),
             ),
             validator: (val) => _bloc.validatePassword(val),
@@ -79,7 +80,7 @@ class _SignUpFormState extends State<SignUpForm> {
               isDense: true,
               contentPadding: EdgeInsets.zero,
               hintText: S.of(context).enteryourpass,
-              prefixIcon: const Icon(Icons.lock_outline_rounded),
+              prefixIcon: const Icon(Ionicons.lock_closed_outline),
               prefixIconConstraints: const BoxConstraints(maxWidth: 20),
             ),
             validator: (val) => _bloc.validateRePass(val),

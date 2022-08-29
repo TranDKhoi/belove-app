@@ -1,5 +1,6 @@
 import 'package:belove_app/app/screens/authentication/login/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../core/values/color.dart';
@@ -49,7 +50,7 @@ class _LoginFormState extends State<LoginForm> {
                                     _emailController.clear();
                                   });
                                 },
-                                child: const Icon(Icons.cancel))
+                                child: const Icon(Ionicons.close_circle_sharp))
                             : null,
                         suffixIconConstraints:
                             const BoxConstraints(maxWidth: 20),
@@ -88,7 +89,7 @@ class _LoginFormState extends State<LoginForm> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(
-                        Icons.check_circle_outline_rounded,
+                        Ionicons.checkmark_circle_outline,
                         color: AppColors.primaryColor,
                       ),
                       const SizedBox(width: 5),

@@ -4,6 +4,7 @@ import 'package:belove_app/app/screens/profile/widgets/left_col.dart';
 import 'package:belove_app/app/screens/profile/widgets/right_col.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 import '../../core/values/color.dart';
@@ -65,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30)
                       .copyWith(bottom: 50),
                   child: const Icon(
-                    Icons.favorite,
+                    Ionicons.heart,
                     color: AppColors.primaryColor,
                   ),
                 ),

@@ -1,9 +1,13 @@
+import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
+import 'package:belove_app/app/global_data/global_key.dart';
+import 'package:belove_app/app/route.dart';
 import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:belove_app/app/screens/home/widgets/add_post_form.dart';
 import 'package:belove_app/app/screens/home/widgets/header.dart';
 import 'package:belove_app/app/screens/home/widgets/timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 import '../sidebar/sidebar.dart';
@@ -38,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Scaffold.of(context).openDrawer();
             },
-            child: const Icon(Icons.menu),
+            child: const Icon(Ionicons.menu_outline),
           );
         }),
         title: const Text(
@@ -85,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             children: [
                               Icon(
-                                Icons.add,
+                                Ionicons.add_outline,
                                 color: Colors.grey[400],
                               ),
                               Text(
@@ -105,6 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
             const HomeTimeLine(),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          navigatorKey.currentState?.pushNamed(chatScreen);
+        },
+        child: const Icon(Ionicons.chatbubble_outline),
       ),
     );
   }
