@@ -13,6 +13,8 @@ class DataBaseService {
 
   final _store = FirebaseFirestore.instance;
 
+  var lastDoc;
+
   dynamic getUserById(String id) async {
     var query = await _store.collection("users").doc(id).get().catchError((e) {
       EasyLoading.showToast(e.toString());
@@ -193,24 +195,78 @@ class DataBaseService {
         .collection("timeline")
         .doc(timeLineId)
         .collection("posts")
+        .orderBy("id", descending: true)
+        .limit(10)
         .get()
         .catchError((e) {
       EasyLoading.showToast(e.toString());
     });
-    //
-    // final data = query.docs;
-    // if (data.isNotEmpty) {
-    //   return data.map((e) {
-    //     List<String> imgMap = e.data()["images"];
-    //     var listImg = imgMap.map((e) => e.toString()).toList();
-    //     return Post(
-    //       id: e.id,
-    //       posterId: e.get("posterId"),
-    //       createdAt: DateTime.parse(e.get("id")),
-    //       title: e.get("title"),
-    //       images: listImg,
-    //     );
-    //   }).toList();
+
+    final data = query.docs;
+
+    if (data.isNotEmpty) {
+      lastDoc = query.docs[query.docs.length - 1];
+      return data.map((e) {
+        List<dynamic> imgMap = e.data()["images"];
+        List<String>? imgList;
+        if (imgMap.isNotEmpty) {
+          imgList = imgMap.map((e) => e.toString()).toList();
+        }
+
+        return Post(
+          id: e.id,
+          posterId: e.get("posterId"),
+          createdAt: DateTime.parse(e.get("id")),
+          title: e.get("title"),
+          images: imgList,
+        );
+      }).toList();
+    }
+    return null;
+  }
+
+  Future getMorePosts() async {
+    String timeLineId = "";
+
+    if (GlobalData.ins.currentUser!.gender == 0) {
+      timeLineId = GlobalData.ins.currentUser!.userId! +
+          GlobalData.ins.currentUser!.partnerId!;
+    } else if (GlobalData.ins.currentUser!.gender == 1) {
+      timeLineId = GlobalData.ins.currentUser!.partnerId! +
+          GlobalData.ins.currentUser!.userId!;
+    }
+
+    final nextQuery = await _store
+        .collection("timeline")
+        .doc(timeLineId)
+        .collection("posts")
+        .orderBy("id", descending: true)
+        .limit(10)
+        .startAfterDocument(lastDoc)
+        .get()
+        .catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+
+    final data = nextQuery.docs;
+
+    if (data.isNotEmpty) {
+      lastDoc = nextQuery.docs[nextQuery.docs.length - 1];
+      return data.map((e) {
+        List<dynamic> imgMap = e.data()["images"];
+        List<String>? imgList;
+        if (imgMap.isNotEmpty) {
+          imgList = imgMap.map((e) => e.toString()).toList();
+        }
+
+        return Post(
+          id: e.id,
+          posterId: e.get("posterId"),
+          createdAt: DateTime.parse(e.get("id")),
+          title: e.get("title"),
+          images: imgList,
+        );
+      }).toList();
     }
     return null;
   }

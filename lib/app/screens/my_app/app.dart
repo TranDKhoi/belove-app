@@ -1,4 +1,5 @@
 import 'package:belove_app/app/core/values/theme.dart';
+import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/app/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -8,32 +9,57 @@ import '../../../generated/l10n.dart';
 import '../../global_data/global_key.dart';
 import '../../screens/my_app/my_app_bloc.dart';
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final MyAppBloc _bloc = MyAppBloc.ins;
 
   @override
+  void dispose() {
+    MyAppBloc.ins.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return StreamBuilder<String>(
-      stream: _bloc.languageStream,
-      builder: (context, AsyncSnapshot<String> snapshot) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: lightTheme,
-          navigatorKey: navigatorKey,
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          locale:
-              snapshot.hasData ? Locale(snapshot.data!) : const Locale("en"),
-          builder: EasyLoading.init(),
-          initialRoute: mainAuthScreen,
-          routes: appRoute,
+    return StreamBuilder<bool>(
+      stream: _bloc.darkModeStream,
+      builder: (context, darkData) {
+        return StreamBuilder<String>(
+          stream: _bloc.languageStream,
+          builder: (context, snapshot) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: darkData.hasData
+                  ? darkData.data == false
+                      ? lightTheme
+                      : darkTheme
+                  : GlobalData.ins.isDark == false
+                      ? lightTheme
+                      : darkTheme,
+              navigatorKey: navigatorKey,
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              locale: snapshot.hasData
+                  ? Locale(snapshot.data!)
+                  : Locale(GlobalData.ins.currentLang),
+              builder: EasyLoading.init(),
+              initialRoute: GlobalData.ins.currentUser?.userId == null
+                  ? mainAuthScreen
+                  : wrapperScreen,
+              routes: appRoute,
+            );
+          },
         );
       },
     );

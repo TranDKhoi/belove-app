@@ -25,10 +25,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Afterverified": MessageLookupByLibrary.simpleMessage(
             "Sau khi xác minh, bạn có thể trở về và đăng nhập bằng tài khoản trên"),
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
+        "areyousure": MessageLookupByLibrary.simpleMessage("Bạn chắc chứ?"),
         "calendar": MessageLookupByLibrary.simpleMessage("Lịch"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "copied": MessageLookupByLibrary.simpleMessage("Đã chép"),
+        "darkmode": MessageLookupByLibrary.simpleMessage("Ban đêm"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
         "days": MessageLookupByLibrary.simpleMessage("ngày"),
         "enteryourbirthday":
@@ -41,9 +43,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sai mật khẩu"),
         "isthisyourbeloved":
             MessageLookupByLibrary.simpleMessage("Có phải là người ấy?"),
+        "language": MessageLookupByLibrary.simpleMessage("Tiếng Việt"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
+        "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "more": MessageLookupByLibrary.simpleMessage("Thêm"),
         "morepost": MessageLookupByLibrary.simpleMessage("Bài đăng"),
         "mustbe6": MessageLookupByLibrary.simpleMessage("Tối thiểu 6 ký tựu"),
@@ -57,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseenteryourname":
             MessageLookupByLibrary.simpleMessage("Nhập tên của bạn"),
         "post": MessageLookupByLibrary.simpleMessage("Đăng bài"),
+        "preference": MessageLookupByLibrary.simpleMessage("Giao diện"),
+        "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
+        "setting": MessageLookupByLibrary.simpleMessage("Cài đặt"),
         "signup": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "since": MessageLookupByLibrary.simpleMessage("Kể từ"),
         "skip": MessageLookupByLibrary.simpleMessage("Bỏ qua"),

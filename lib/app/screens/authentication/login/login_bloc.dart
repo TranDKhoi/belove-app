@@ -27,21 +27,15 @@ class LoginBloc {
         .signInWithEmailPassword(email: email, password: password);
     EasyLoading.dismiss();
 
-    //get user data by id
+    //get user by id
     if (res != null) {
       User? u = await DataBaseService.ins.getUserById(res.userId!);
       if (u != null) {
         GlobalData.ins.currentUser = u;
-
         if (u.name == "") {
           navigatorKey.currentState!
               .pushNamedAndRemoveUntil(bioScreen, (_) => false);
           return;
-        }
-        if (u.partnerId != "") {
-          User partner = await DataBaseService.ins.getUserById(u.partnerId!);
-          GlobalData.ins.currentUser!.partner = partner;
-          GlobalData.ins.ourDay = await DataBaseService.ins.getAnniversary();
         }
         navigatorKey.currentState!
             .pushNamedAndRemoveUntil(wrapperScreen, (_) => false);

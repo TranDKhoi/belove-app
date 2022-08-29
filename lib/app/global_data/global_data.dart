@@ -9,4 +9,6 @@ class GlobalData {
 
   User? currentUser;
   Anniversary? ourDay;
+  bool isDark = false;
+  String currentLang = "en";
 }

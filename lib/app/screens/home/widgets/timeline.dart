@@ -1,6 +1,10 @@
 import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../data/models/post.dart';
+import '../../../commons/post_item.dart';
+import '../../../global_data/global_data.dart';
+
 class HomeTimeLine extends StatefulWidget {
   const HomeTimeLine({Key? key}) : super(key: key);
 
@@ -12,32 +16,24 @@ class _HomeTimeLineState extends State<HomeTimeLine> {
   final _bloc = HomeBloc.ins;
 
   @override
+  void initState() {
+    _bloc.getPost();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _bloc.getPost(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Column(
-            children: _bloc.posts
-                .map(
-                  (e) => Card(
-                    child:
-                        Text(e.images == [] ? "11" : e.images![0].toString()),
-                  ),
-                )
-                .toList(),
-          );
-        }
-        return Column(
-          children: _bloc.posts
-              .map(
-                (e) => Card(
-                  child: Text(e.id!),
-                ),
-              )
-              .toList(),
-        );
-      },
-    );
+    return StreamBuilder<List<Post>>(
+        stream: _bloc.postStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: _bloc.posts.map((e) => PostItem(item: e)).toList(),
+            );
+          }
+          return GlobalData.ins.isDark
+              ? Image.asset("assets/images/empty_dark.png")
+              : Image.asset("assets/images/empty.png");
+        });
   }
 }

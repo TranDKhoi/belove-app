@@ -1,7 +1,8 @@
 import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:belove_app/app/screens/home/home_screen.dart';
 import 'package:belove_app/app/screens/profile/profile_bloc.dart';
-import 'package:belove_app/app/screens/profile/profile_screen.dart';
+import 'package:belove_app/app/screens/setting/setting_bloc.dart';
+import 'package:belove_app/app/screens/setting/setting_screen.dart';
 import 'package:belove_app/app/screens/wrapper/wrapper_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -21,14 +22,21 @@ class _WrapperState extends State<Wrapper> {
   List<Widget> pages = [
     const HomeScreen(),
     Text("2"),
-    const ProfileScreen(),
+    const SettingScreen(),
   ];
+
+  @override
+  void initState() {
+    _bloc.getUserData();
+    super.initState();
+  }
 
   @override
   void dispose() {
     ProfileBloc.ins.dispose();
     SideBarBloc.ins.dispose();
     HomeBloc.ins.dispose();
+    SettingBloc.ins.dispose();
     super.dispose();
   }
 

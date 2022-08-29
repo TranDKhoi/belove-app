@@ -25,10 +25,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Afterverified": MessageLookupByLibrary.simpleMessage(
             "After verified, you can go back and log in with this account"),
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
+        "areyousure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "calendar": MessageLookupByLibrary.simpleMessage("Calendar"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
+        "darkmode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "days": MessageLookupByLibrary.simpleMessage("days"),
         "enteryourbirthday":
@@ -43,9 +45,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Incorrect password"),
         "isthisyourbeloved":
             MessageLookupByLibrary.simpleMessage("Is this your beloved?"),
+        "language": MessageLookupByLibrary.simpleMessage("Vietnamese"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "morepost": MessageLookupByLibrary.simpleMessage("More post"),
         "mustbe6": MessageLookupByLibrary.simpleMessage(
@@ -62,6 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseenteryourname":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "post": MessageLookupByLibrary.simpleMessage("Post"),
+        "preference": MessageLookupByLibrary.simpleMessage("Preference"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign up"),
         "since": MessageLookupByLibrary.simpleMessage("Since"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),

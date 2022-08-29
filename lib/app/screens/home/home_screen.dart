@@ -1,3 +1,4 @@
+import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:belove_app/app/screens/home/widgets/add_post_form.dart';
 import 'package:belove_app/app/screens/home/widgets/header.dart';
@@ -57,48 +58,50 @@ class _HomeScreenState extends State<HomeScreen> {
             //HEADER
             const HomeHeader(),
             //TIMELINE
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () async {
-                      await showDialog(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (_) {
-                            return const AddPostForm();
-                          });
-                      _bloc.getPost();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.grey[400]!),
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 3),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.grey[400],
-                            ),
-                            Text(
-                              S.of(context).morepost,
-                              style: TextStyle(
-                                color: Colors.grey[600],
+            if (GlobalData.ins.currentUser!.partner != null)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () async {
+                        await showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (_) {
+                              return const AddPostForm();
+                            });
+                        _bloc.getPost();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(width: 1, color: Colors.grey[400]!),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 3),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.add,
+                                color: Colors.grey[400],
                               ),
-                            ),
-                          ],
+                              Text(
+                                S.of(context).morepost,
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
+                  )
+                ],
+              ),
             const HomeTimeLine(),
           ],
         ),

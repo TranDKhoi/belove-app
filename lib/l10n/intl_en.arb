@@ -38,6 +38,12 @@
   "morepost": "More post",
   "whatmemoriesdoyouwanttosave": "What memories do you want to save?",
   "post": "Post",
-  "yourmustpostsomething": "You must post something"
-
+  "yourmustpostsomething": "You must post something",
+  "profile": "Profile",
+  "logout": "Log out",
+  "setting": "Setting",
+  "areyousure": "Are you sure?",
+  "preference": "Preference",
+  "darkmode": "Dark mode",
+  "language": "Vietnamese"
 }

@@ -11,3 +11,14 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     foregroundColor: Colors.white,
   ),
 );
+
+final ThemeData darkTheme = ThemeData.dark().copyWith(
+  textTheme: ThemeData.dark().textTheme.apply(
+        fontFamily: "Arima",
+      ),
+  colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
+  appBarTheme: const AppBarTheme(
+    elevation: 0,
+    foregroundColor: Colors.white,
+  ),
+);
