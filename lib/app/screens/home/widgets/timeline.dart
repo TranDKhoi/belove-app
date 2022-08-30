@@ -1,4 +1,5 @@
 import 'package:belove_app/app/screens/home/home_bloc.dart';
+import 'package:belove_app/app/screens/home/home_inherited.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../data/models/post.dart';
@@ -13,12 +14,13 @@ class HomeTimeLine extends StatefulWidget {
 }
 
 class _HomeTimeLineState extends State<HomeTimeLine> {
-  final _bloc = HomeBloc.ins;
+  late HomeBloc _bloc;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
+    _bloc = HomeInherited.of(context).bloc;
     _bloc.getPost();
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override

@@ -7,71 +7,73 @@ import 'package:ionicons/ionicons.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../bio_bloc.dart';
+import '../bio_inherited.dart';
 
 class BioForm extends StatefulWidget {
-  const BioForm({Key? key, required this.formKey}) : super(key: key);
-
-  final GlobalKey<FormState> formKey;
+  const BioForm({Key? key}) : super(key: key);
 
   @override
   State<BioForm> createState() => _BioFormState();
 }
 
 class _BioFormState extends State<BioForm> {
-  final _bloc = BioBloc.ins;
   final _nameController = TextEditingController();
+  late GlobalKey<FormState> _formKey;
+  late BioBloc _bloc;
+
+  @override
+  void didChangeDependencies() {
+    _bloc = BioInherited.of(context).bloc;
+    _formKey = BioInherited.of(context).formKey;
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
-    _bloc.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey,
+      key: _formKey,
       child: Column(
         children: [
           StreamBuilder<int>(
               stream: _bloc.genderStream,
-              initialData: _bloc.gender,
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Opacity(
-                        opacity: snapshot.data == 0 ? 1 : 0.5,
-                        child: GestureDetector(
-                          onTap: () {
-                            _bloc.updateGender(0);
-                          },
-                          child: Image.asset(
-                            "assets/images/boy.png",
-                            width: 80,
-                            height: 80,
-                          ),
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Opacity(
+                      opacity: _bloc.gender == 0 ? 1 : 0.5,
+                      child: GestureDetector(
+                        onTap: () {
+                          _bloc.updateGender(0);
+                        },
+                        child: Image.asset(
+                          "assets/images/boy.png",
+                          width: 80,
+                          height: 80,
                         ),
                       ),
-                      Opacity(
-                        opacity: snapshot.data == 1 ? 1 : 0.5,
-                        child: GestureDetector(
-                          onTap: () {
-                            _bloc.updateGender(1);
-                          },
-                          child: Image.asset(
-                            "assets/images/girl.png",
-                            width: 80,
-                            height: 80,
-                          ),
+                    ),
+                    Opacity(
+                      opacity: _bloc.gender == 1 ? 1 : 0.5,
+                      child: GestureDetector(
+                        onTap: () {
+                          _bloc.updateGender(1);
+                        },
+                        child: Image.asset(
+                          "assets/images/girl.png",
+                          width: 80,
+                          height: 80,
                         ),
                       ),
-                    ],
-                  );
-                } else {
-                  return const SizedBox();
-                }
+                    ),
+                  ],
+                );
               }),
           const SizedBox(height: 20),
           TextFormField(

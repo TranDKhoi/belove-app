@@ -10,7 +10,9 @@ import '../../../core/values/color.dart';
 import '../profile_bloc.dart';
 
 class ConnectPartnerForm extends StatefulWidget {
-  const ConnectPartnerForm({Key? key}) : super(key: key);
+  const ConnectPartnerForm(this.bloc, {Key? key}) : super(key: key);
+
+  final ProfileBloc bloc;
 
   @override
   State<ConnectPartnerForm> createState() => _ConnectPartnerFormState();
@@ -18,7 +20,12 @@ class ConnectPartnerForm extends StatefulWidget {
 
 class _ConnectPartnerFormState extends State<ConnectPartnerForm> {
   final _codeController = TextEditingController();
-  final _bloc = ProfileBloc.ins;
+
+  @override
+  void dispose() {
+    _codeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +92,13 @@ class _ConnectPartnerFormState extends State<ConnectPartnerForm> {
               GestureDetector(
                 onTap: () async {
                   if (_codeController.text.isEmpty) return;
-                  var partner = await _bloc.findPartner(_codeController.text);
+                  var partner =
+                      await widget.bloc.findPartner(_codeController.text);
                   if (partner != null) {
                     showDialog(
                         context: context,
                         builder: (context) {
-                          return PartnerInfoForm(partner: partner);
+                          return PartnerInfoForm(widget.bloc, partner: partner);
                         });
                   }
                 },

@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../global_data/global_data.dart';
 import '../values/color.dart';
 
 extension GetScreenSize on BuildContext {
@@ -94,4 +95,13 @@ class ImageHelper {
     }
     return null;
   }
+}
+
+String getCoupleId() {
+  if (GlobalData.ins.currentUser!.gender == 0) {
+    return GlobalData.ins.currentUser!.userId! +
+        GlobalData.ins.currentUser!.partnerId!;
+  }
+  return GlobalData.ins.currentUser!.partnerId! +
+      GlobalData.ins.currentUser!.userId!;
 }

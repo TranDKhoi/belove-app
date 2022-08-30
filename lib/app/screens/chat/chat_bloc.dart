@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import '../../../../data/models/message.dart';
-import '../../../../data/services/database.dart';
+import 'package:belove_app/data/services/database/chat_base.dart';
+
+import '../../../data/models/message.dart';
 
 class ChatBloc {
   ChatBloc._() {
@@ -18,19 +19,19 @@ class ChatBloc {
 
   Stream<List<Message>> get messageStream => _messageStreamController.stream;
 
-  Stream newMessageListener = DataBaseService.ins.listenerMessage();
+  Stream newMessageListener = ChatBaseService.ins.listenerMessage();
 
   //----------------------------------------------------
 
-//EVENT---------------------------------------------------
+  //EVENT---------------------------------------------------
 
   sendMessage(String mess) async {
-    await DataBaseService.ins
+    await ChatBaseService.ins
         .sendMessage(Message(message: mess), DateTime.now());
   }
 
   getMessage() async {
-    var res = await DataBaseService.ins.getMessage();
+    var res = await ChatBaseService.ins.getMessage();
 
     if (res != null) {
       messageList.addAll(res);
@@ -39,7 +40,7 @@ class ChatBloc {
   }
 
   getMoreMessage() async {
-    var res = await DataBaseService.ins.getMoreMessage();
+    var res = await ChatBaseService.ins.getMoreMessage();
 
     if (res != null) {
       messageList.addAll(res);

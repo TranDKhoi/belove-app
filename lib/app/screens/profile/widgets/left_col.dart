@@ -1,5 +1,6 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/screens/profile/profile_bloc.dart';
+import 'package:belove_app/app/screens/profile/profile_inherited.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
@@ -15,7 +16,13 @@ class LeftCol extends StatefulWidget {
 }
 
 class _LeftColState extends State<LeftCol> {
-  final _bloc = ProfileBloc.ins;
+  late ProfileBloc _bloc;
+
+  @override
+  void didChangeDependencies() {
+    _bloc = ProfileInherited.of(context).bloc;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -9,16 +9,16 @@ import '../../../core/values/color.dart';
 import '../profile_bloc.dart';
 
 class PartnerInfoForm extends StatefulWidget {
-  const PartnerInfoForm({Key? key, required this.partner}) : super(key: key);
+  const PartnerInfoForm(this.bloc, {Key? key, required this.partner})
+      : super(key: key);
   final User partner;
+  final ProfileBloc bloc;
 
   @override
   State<PartnerInfoForm> createState() => _PartnerInfoFormState();
 }
 
 class _PartnerInfoFormState extends State<PartnerInfoForm> {
-  final _bloc = ProfileBloc.ins;
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -65,7 +65,7 @@ class _PartnerInfoFormState extends State<PartnerInfoForm> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      await _bloc.connectPartner(widget.partner.userId!);
+                      await widget.bloc.connectPartner(widget.partner.userId!);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),

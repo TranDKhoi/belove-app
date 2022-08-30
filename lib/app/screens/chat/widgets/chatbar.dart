@@ -1,5 +1,5 @@
 import 'package:belove_app/app/core/utils/utils.dart';
-import 'package:belove_app/app/screens/chat/widgets/chat_bloc.dart';
+import 'package:belove_app/app/screens/chat/chat_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 

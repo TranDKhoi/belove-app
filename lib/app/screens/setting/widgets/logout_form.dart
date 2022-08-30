@@ -47,7 +47,7 @@ class LogOutForm extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      SettingBloc.ins.logOut();
+                      SettingBloc().logOut();
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),

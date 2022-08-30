@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/data/models/post.dart';
-import 'package:belove_app/data/services/database.dart';
+import 'package:belove_app/data/services/database/timeline_base.dart';
+import 'package:belove_app/data/services/database/user_base.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../data/models/user.dart';
+import '../../../data/services/database/anniversary_base.dart';
 
 class HomeBloc {
-  HomeBloc._();
-
-  static final ins = HomeBloc._();
-
   //STREAM------------------------------------------
   final StreamController<List<Post>> _postStreamController =
       StreamController<List<Post>>.broadcast();
@@ -22,10 +23,10 @@ class HomeBloc {
   //EVENT------------------------------------------------
   loadMorePost() async {
     if (GlobalData.ins.currentUser!.partner == null) return;
-    List<Post>? res = await DataBaseService.ins.getMorePosts();
+    List<Post>? res = await TimelineBaseService.ins.getMorePosts();
     if (res != null) {
       for (int i = 0; i < res.length; i++) {
-        res[i].poster = await DataBaseService.ins.getUserById(res[i].posterId!);
+        res[i].poster = await UserBaseService.ins.getUserById(res[i].posterId!);
       }
       posts.addAll(res);
       _postStreamController.sink.add(posts);
@@ -35,16 +36,29 @@ class HomeBloc {
   getPost() async {
     if (GlobalData.ins.currentUser!.partner == null) return;
     EasyLoading.show();
-    List<Post>? res = await DataBaseService.ins.getPosts();
+    List<Post>? res = await TimelineBaseService.ins.getPosts();
     if (res != null) {
       for (int i = 0; i < res.length; i++) {
-        res[i].poster = await DataBaseService.ins.getUserById(res[i].posterId!);
+        res[i].poster = await UserBaseService.ins.getUserById(res[i].posterId!);
       }
       EasyLoading.dismiss();
       posts = res;
       _postStreamController.sink.add(posts);
     }
     EasyLoading.dismiss();
+  }
+
+  fetchUserData() async {
+    if (GlobalData.ins.currentUser!.partnerId != "") {
+      User partner = await UserBaseService.ins
+          .getUserById(GlobalData.ins.currentUser!.partnerId!);
+      GlobalData.ins.currentUser!.partner = partner;
+      GlobalData.ins.ourDay = await AnniversaryBaseService.ins.getAnniversary();
+    }
+
+    //save to local
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString("userId", GlobalData.ins.currentUser!.userId!);
   }
 
   void dispose() {

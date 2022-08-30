@@ -2,16 +2,13 @@ import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
-import 'package:belove_app/app/screens/authentication/login/login_bloc.dart';
 import 'package:belove_app/app/screens/authentication/login/login_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
 
 class MainAuthScreen extends StatelessWidget {
-  MainAuthScreen({Key? key}) : super(key: key);
-
-  final _bloc = LoginBloc.ins;
+  const MainAuthScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +16,7 @@ class MainAuthScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
+          //BACKGROUND
           Expanded(
             child: Stack(
               fit: StackFit.expand,
@@ -49,6 +47,7 @@ class MainAuthScreen extends StatelessWidget {
               ],
             ),
           ),
+          //BUTTON
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

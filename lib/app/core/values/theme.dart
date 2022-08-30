@@ -9,6 +9,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
   appBarTheme: const AppBarTheme(
     elevation: 0,
     foregroundColor: Colors.white,
+    backgroundColor: AppColors.primaryColor,
   ),
 );
 
@@ -16,9 +17,10 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   textTheme: ThemeData.dark().textTheme.apply(
         fontFamily: "Comfortaa",
       ),
-  colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
+  colorScheme: const ColorScheme.dark(primary: AppColors.primaryColor),
   appBarTheme: const AppBarTheme(
     elevation: 0,
     foregroundColor: Colors.white,
+    backgroundColor: AppColors.primaryColor,
   ),
 );

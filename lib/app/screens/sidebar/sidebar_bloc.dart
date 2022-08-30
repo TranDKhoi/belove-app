@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/data/models/anniversary.dart';
-
-import '../../../../data/services/database.dart';
+import 'package:belove_app/data/services/database/anniversary_base.dart';
 
 class SideBarBloc {
   SideBarBloc._();
@@ -24,8 +23,9 @@ class SideBarBloc {
   //--------------------------------------------
 
   uploadBeginDay() async {
-    await DataBaseService.ins.createAnniversary(pickedDate!);
-    Anniversary? res = await DataBaseService.ins.getAnniversary();
+    if (pickedDate == null) return;
+    await AnniversaryBaseService.ins.createAnniversary(pickedDate!);
+    Anniversary? res = await AnniversaryBaseService.ins.getAnniversary();
 
     if (res != null) {
       GlobalData.ins.ourDay = res;

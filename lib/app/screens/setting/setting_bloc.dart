@@ -4,9 +4,6 @@ import 'package:belove_app/data/services/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingBloc {
-  SettingBloc._();
-  static final ins = SettingBloc._();
-
   //STREAM-------------------------------------------------------
   //-------------------------------------------------------------
 
@@ -17,6 +14,4 @@ class SettingBloc {
     navigatorKey.currentState
         ?.pushNamedAndRemoveUntil(mainAuthScreen, (_) => false);
   }
-
-  void dispose() {}
 }

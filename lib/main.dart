@@ -1,5 +1,5 @@
 import 'package:belove_app/app/core/utils/utils.dart';
-import 'package:belove_app/data/services/database.dart';
+import 'package:belove_app/data/services/database/user_base.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ initData() async {
   var res = pref.getString("userId");
 
   if (res != null) {
-    GlobalData.ins.currentUser = await DataBaseService.ins.getUserById(res);
+    GlobalData.ins.currentUser = await UserBaseService.ins.getUserById(res);
   }
 
   GlobalData.ins.isDark = pref.getBool("isDark") ?? false;

@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:belove_app/app/global_data/global_key.dart';
+import 'package:belove_app/data/services/database/chat_base.dart';
+import 'package:belove_app/data/services/database/timeline_base.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../data/models/user.dart';
-import '../../../data/services/database.dart';
+import '../../../data/services/database/user_base.dart';
 import '../../../data/services/store.dart';
 import '../../../generated/l10n.dart';
 import '../../core/utils/utils.dart';
@@ -13,18 +15,14 @@ import '../../global_data/global_data.dart';
 import '../../global_data/global_key.dart';
 
 class ProfileBloc {
-  ProfileBloc._();
-
-  static final ins = ProfileBloc._();
-
   //=========================================
   final StreamController<String> _avatarStreamController =
-      StreamController<String>.broadcast();
+      StreamController<String>();
 
   Stream<String> get avatarStream => _avatarStreamController.stream;
 
   final StreamController<String> _birthdayStreamController =
-      StreamController<String>.broadcast();
+      StreamController<String>();
 
   Stream<String> get birthDayStream => _birthdayStreamController.stream;
 
@@ -60,21 +58,21 @@ class ProfileBloc {
     var imgLink = await StoreService.ins.uploadUserAvatar(imageFile);
     if (imgLink != null) {
       GlobalData.ins.currentUser!.avatar = imgLink;
-      DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+      UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       _avatarStreamController.sink.add(imgLink);
     }
   }
 
   uploadBirthDay(DateTime newDate) async {
     GlobalData.ins.currentUser!.birthday = newDate;
-    await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+    await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
     _birthdayStreamController.sink.add(dateFormat(newDate));
   }
 
   Future<User?> findPartner(String pId) async {
     if (pId == GlobalData.ins.currentUser!.userId) return null;
-    User? res = await DataBaseService.ins.getUserById(pId);
-    if (res == null) {
+    User? res = await UserBaseService.ins.getUserById(pId);
+    if (res == null || res.name == "") {
       EasyLoading.showToast(S.current.usernotfound);
       return null;
     }
@@ -87,7 +85,7 @@ class ProfileBloc {
 
   connectPartner(String id) async {
     try {
-      User partner = await DataBaseService.ins.getUserById(id);
+      User partner = await UserBaseService.ins.getUserById(id);
 
       if (partner.gender == GlobalData.ins.currentUser!.gender) {
         EasyLoading.showToast(S.current.youguysareofthesamegender);
@@ -99,10 +97,10 @@ class ProfileBloc {
       GlobalData.ins.currentUser!.partner = partner;
 
       EasyLoading.show();
-      await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
-      await DataBaseService.ins.uploadUserInfo(partner);
-      await DataBaseService.ins.createTimeLine();
-      await DataBaseService.ins.createChatRoom();
+      await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+      await UserBaseService.ins.uploadUserInfo(partner);
+      await TimelineBaseService.ins.createTimeLine();
+      await ChatBaseService.ins.createChatRoom();
       navigatorKey.currentState?.pop();
       navigatorKey.currentState?.pop();
       _partnerStreamController.sink.add(partner);

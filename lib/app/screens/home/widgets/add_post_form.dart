@@ -57,9 +57,11 @@ class _AddPostFormState extends State<AddPostForm> {
                         width: 40,
                         height: 40,
                       ),
+                    const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 5),
                         Text(
                           GlobalData.ins.currentUser!.name!,
                           style: const TextStyle(fontSize: 15),
@@ -82,6 +84,7 @@ class _AddPostFormState extends State<AddPostForm> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 10),
                 //title here
                 TextField(
                   controller: _titleController,

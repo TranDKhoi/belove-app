@@ -9,16 +9,14 @@ enum SupportedLanguage {
 }
 
 class MyAppBloc {
-  //singleton
   MyAppBloc._();
-
   static final ins = MyAppBloc._();
 
   //STREAM CONTROLLER====================================================
-  final StreamController<String> _languageState =
+  final StreamController<String> _languageStreamController =
       StreamController<String>.broadcast();
 
-  Stream<String> get languageStream => _languageState.stream;
+  Stream<String> get languageStream => _languageStreamController.stream;
 
   final StreamController<bool> _darkModeStreamController =
       StreamController<bool>.broadcast();
@@ -37,14 +35,14 @@ class MyAppBloc {
         {
           GlobalData.ins.currentLang = "en";
           ref.setString("language", "en");
-          _languageState.sink.add("en");
+          _languageStreamController.sink.add("en");
           return;
         }
       case SupportedLanguage.vietnamese:
         {
           GlobalData.ins.currentLang = "vi";
           ref.setString("language", "vi");
-          _languageState.sink.add("vi");
+          _languageStreamController.sink.add("vi");
           return;
         }
     }
@@ -58,5 +56,7 @@ class MyAppBloc {
   }
 
   void dispose() {
+    _darkModeStreamController.close();
+    _languageStreamController.close();
   }
 }

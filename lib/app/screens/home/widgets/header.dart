@@ -1,11 +1,11 @@
 import 'package:belove_app/app/core/utils/utils.dart';
+import 'package:belove_app/app/screens/home/home_bloc.dart';
+import 'package:belove_app/app/screens/home/home_inherited.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../../../../data/models/user.dart';
 import '../../../../generated/l10n.dart';
 import '../../../global_data/global_data.dart';
-import '../../profile/profile_bloc.dart';
 import '../../sidebar/sidebar_bloc.dart';
 
 class HomeHeader extends StatefulWidget {
@@ -16,6 +16,14 @@ class HomeHeader extends StatefulWidget {
 }
 
 class _HomeHeaderState extends State<HomeHeader> {
+  late HomeBloc _bloc;
+
+  @override
+  void didChangeDependencies() {
+    _bloc = HomeInherited.of(context).bloc;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -129,35 +137,21 @@ class _HomeHeaderState extends State<HomeHeader> {
                           color: Colors.white,
                         ),
                       ),
-                      StreamBuilder<User>(
-                          stream: ProfileBloc.ins.partnerStream,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Text(
-                                snapshot.data!.name!,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              );
-                            }
-                            if (GlobalData.ins.currentUser!.partner != null) {
-                              return Text(
-                                GlobalData.ins.currentUser!.partner!.name!,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              );
-                            }
-                            return const Text(
+                      GlobalData.ins.currentUser!.partner != null
+                          ? Text(
+                              GlobalData.ins.currentUser!.partner!.name!,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          : const Text(
                               "...",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
-                            );
-                          }),
+                            ),
                     ],
                   ),
                 ),

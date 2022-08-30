@@ -5,18 +5,19 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class PhotoViewer extends StatefulWidget {
-  const PhotoViewer({Key? key, required this.galleryItems, this.selectedIndex})
+  const PhotoViewer(
+      {Key? key, required this.galleryItems, required this.selectedIndex})
       : super(key: key);
 
-  final galleryItems;
-  final selectedIndex;
+  final List<String> galleryItems;
+  final int selectedIndex;
 
   @override
   State<PhotoViewer> createState() => _PhotoViewerState();
 }
 
 class _PhotoViewerState extends State<PhotoViewer> {
-  late final _pageController;
+  late PageController _pageController;
 
   @override
   void initState() {

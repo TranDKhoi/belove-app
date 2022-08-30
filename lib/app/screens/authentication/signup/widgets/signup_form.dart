@@ -1,13 +1,12 @@
 import 'package:belove_app/app/screens/authentication/signup/signup_bloc.dart';
+import 'package:belove_app/app/screens/authentication/signup/signup_inherited.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../../../generated/l10n.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key? key, required this.formKey}) : super(key: key);
-
-  final GlobalKey<FormState> formKey;
+  const SignUpForm({Key? key}) : super(key: key);
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -18,7 +17,15 @@ class _SignUpFormState extends State<SignUpForm> {
   final _passController = TextEditingController();
   final _rePassController = TextEditingController();
 
-  final _bloc = SignUpBloc.ins;
+  late SignUpBloc _bloc;
+  late GlobalKey<FormState> _formKey;
+
+  @override
+  void didChangeDependencies() {
+    _bloc = SignUpInherited.of(context).bloc;
+    _formKey = SignUpInherited.of(context).formKey;
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
@@ -32,7 +39,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey,
+      key: _formKey,
       child: Column(
         children: [
           TextFormField(

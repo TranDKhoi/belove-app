@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/global_data/global_key.dart';
-import 'package:belove_app/data/services/database.dart';
+import 'package:belove_app/data/services/database/timeline_base.dart';
 import 'package:belove_app/data/services/store.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -54,7 +54,7 @@ class AddPostBloc {
       var links = await StoreService.ins.uploadPostImages(
           listImage!.map((e) => File(e)).toList(), DateTime.now());
       if (links != null) {
-        await DataBaseService.ins.createPost(title, links, createdAt);
+        await TimelineBaseService.ins.createPost(title, links, createdAt);
       }
       EasyLoading.dismiss();
       navigatorKey.currentState?.pop();
@@ -62,7 +62,7 @@ class AddPostBloc {
     }
     EasyLoading.show();
 
-    await DataBaseService.ins.createPost(title, null, createdAt);
+    await TimelineBaseService.ins.createPost(title, null, createdAt);
     EasyLoading.dismiss();
     navigatorKey.currentState?.pop();
   }

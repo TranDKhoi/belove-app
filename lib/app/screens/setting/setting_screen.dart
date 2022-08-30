@@ -1,6 +1,5 @@
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
-import 'package:belove_app/app/screens/setting/setting_bloc.dart';
 import 'package:belove_app/app/screens/setting/widgets/logout_form.dart';
 import 'package:belove_app/app/screens/setting/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +15,6 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  final _bloc = SettingBloc.ins;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

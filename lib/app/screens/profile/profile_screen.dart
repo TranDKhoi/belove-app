@@ -1,13 +1,11 @@
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
-import 'package:belove_app/app/screens/profile/widgets/left_col.dart';
-import 'package:belove_app/app/screens/profile/widgets/right_col.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:belove_app/app/screens/profile/profile_bloc.dart';
+import 'package:belove_app/app/screens/profile/profile_inherited.dart';
+import 'package:belove_app/app/screens/profile/widgets/profile_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
-import '../../core/values/color.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -18,6 +16,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool canReturn = true;
+  final _bloc = ProfileBloc();
 
   @override
   void didChangeDependencies() {
@@ -25,6 +24,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       canReturn = ModalRoute.of(context)?.settings.arguments as bool;
     }
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,37 +50,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               onTap: () {
                 navigatorKey.currentState
-                    ?.pushNamedAndRemoveUntil(wrapperScreen, (_) => false);
+                    ?.pushNamedAndRemoveUntil(bottomBarScreen, (_) => false);
               },
             ),
           ),
           const SizedBox(width: 20),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 80),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const LeftCol(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30)
-                      .copyWith(bottom: 50),
-                  child: const Icon(
-                    Ionicons.heart,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-                const RightCol(),
-              ],
-            ),
-          ],
-        ),
-      ),
+      body: ProfileInherited(_bloc, child: const ProfileWrapper()),
     );
   }
 }

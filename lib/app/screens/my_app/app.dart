@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    MyAppBloc.ins.dispose();
+    _bloc.dispose();
     super.dispose();
   }
 
@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
               builder: EasyLoading.init(),
               initialRoute: GlobalData.ins.currentUser?.userId == null
                   ? mainAuthScreen
-                  : wrapperScreen,
+                  : bottomBarScreen,
               routes: appRoute,
             );
           },

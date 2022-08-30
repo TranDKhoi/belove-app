@@ -1,13 +1,13 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
-import 'package:belove_app/app/screens/chat/widgets/chat_bloc.dart';
+import 'package:belove_app/app/screens/chat/chat_bloc.dart';
 import 'package:belove_app/app/screens/chat/widgets/chatbar.dart';
 import 'package:belove_app/app/screens/chat/widgets/receive_item.dart';
 import 'package:belove_app/app/screens/chat/widgets/send_item.dart';
-import 'package:belove_app/data/models/message.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../../data/models/message.dart';
 import '../../../generated/l10n.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -18,8 +18,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final _scrollController = ScrollController();
   final _bloc = ChatBloc.ins;
+  final _scrollController = ScrollController();
 
   @override
   void initState() {

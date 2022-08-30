@@ -4,17 +4,13 @@ import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/app/global_data/global_key.dart';
 import 'package:belove_app/app/route.dart';
-import 'package:belove_app/data/services/database.dart';
+import 'package:belove_app/data/services/database/user_base.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../../generated/l10n.dart';
 
 class BioBloc {
-  BioBloc._();
-
-  static final ins = BioBloc._();
-
   //STREAM=======================================
   final StreamController<String> _birthdayStreamController =
       StreamController<String>();
@@ -50,7 +46,7 @@ class BioBloc {
 
   uploadBirthDay(DateTime newDate) async {
     GlobalData.ins.currentUser!.birthday = newDate;
-    await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+    await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
     _birthdayStreamController.sink.add(dateFormat(newDate));
   }
 
@@ -64,22 +60,14 @@ class BioBloc {
     _genderStreamController.sink.add(val);
   }
 
-  void dispose() {
-    _genderStreamController.close();
-    _birthdayStreamController.close();
-    birthDay = null;
-    name = null;
-    gender = 0;
-  }
-
   uploadUserInfo() async {
     EasyLoading.show();
 
     GlobalData.ins.currentUser!.gender = gender;
     GlobalData.ins.currentUser!.birthday = birthDay;
     GlobalData.ins.currentUser!.name = name;
-    await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
-    GlobalData.ins.currentUser = await DataBaseService.ins
+    await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+    GlobalData.ins.currentUser = await UserBaseService.ins
         .getUserById(GlobalData.ins.currentUser!.userId!);
 
     EasyLoading.dismiss();
@@ -87,5 +75,13 @@ class BioBloc {
     navigatorKey.currentState?.pushNamedAndRemoveUntil(
         profileScreen, (_) => false,
         arguments: false);
+  }
+
+  void dispose() {
+    _genderStreamController.close();
+    _birthdayStreamController.close();
+    birthDay = null;
+    name = null;
+    gender = 0;
   }
 }

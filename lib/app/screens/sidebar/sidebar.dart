@@ -57,140 +57,72 @@ class _SideBarState extends State<SideBar> {
                         color: Colors.white,
                       ),
                     ),
-                    StreamBuilder<int>(
-                        stream: _bloc.beginDayStream,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Text(
-                              dateFormat(GlobalData.ins.ourDay!.beginDate!),
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
-                            );
-                          }
-                          if (GlobalData.ins.ourDay != null) {
-                            return Text(
-                              dateFormat(GlobalData.ins.ourDay!.beginDate!),
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
-                            );
-                          }
-                          return const Text(
+                    GlobalData.ins.ourDay == null
+                        ? const Text(
                             "...",
                             style: TextStyle(
                               color: Colors.white,
                             ),
-                          );
-                        }),
+                          )
+                        : StreamBuilder<int>(
+                            stream: _bloc.beginDayStream,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  dateFormat(GlobalData.ins.ourDay!.beginDate!),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                );
+                              }
+                              return Text(
+                                dateFormat(GlobalData.ins.ourDay!.beginDate!),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              );
+                            }),
                     const SizedBox(height: 10),
                     GestureDetector(
                       onTap: () async {
                         if (GlobalData.ins.currentUser!.partnerId == "") return;
-                        await showCupertinoModalPopup(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: context.screenSize.height / 3,
-                              color: CupertinoColors.systemBackground
-                                  .resolveFrom(context),
-                              child: SafeArea(
-                                top: false,
-                                child: CupertinoDatePicker(
-                                  initialDateTime: GlobalData.ins.ourDay != null
-                                      ? GlobalData.ins.ourDay!.beginDate!
-                                      : DateTime.now(),
-                                  maximumDate: DateTime.now(),
-                                  mode: CupertinoDatePickerMode.date,
-                                  onDateTimeChanged: (DateTime newDate) {
-                                    _bloc.pickedDate = newDate;
-                                  },
-                                ),
-                              ),
-                            );
-                          },
-                        );
+                        await showDatePicker();
                         _bloc.uploadBeginDay();
                       },
-                      child: StreamBuilder<int>(
-                          stream: _bloc.beginDayStream,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 70,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      snapshot.data.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 30,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      S.of(context).days,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                            if (GlobalData.ins.ourDay != null) {
-                              return CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 70,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      countDay(
-                                              GlobalData.ins.ourDay!.beginDate!)
-                                          .toString(),
-                                      style: const TextStyle(
-                                        fontSize: 30,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      S.of(context).days,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                            return CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 70,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "0",
-                                    style: TextStyle(
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 70,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            StreamBuilder<int>(
+                                stream: _bloc.beginDayStream,
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    countDay(snapshot.hasData
+                                            ? GlobalData.ins.ourDay!.beginDate!
+                                            : GlobalData.ins.ourDay == null
+                                                ? DateTime.now().add(
+                                                    const Duration(days: 2))
+                                                : GlobalData
+                                                    .ins.ourDay!.beginDate!)
+                                        .toString(),
+                                    style: const TextStyle(
                                       fontSize: 30,
                                       color: AppColors.primaryColor,
                                     ),
-                                  ),
-                                  Text(
-                                    S.of(context).days,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      color: AppColors.primaryColor,
-                                    ),
-                                  ),
-                                ],
+                                  );
+                                }),
+                            Text(
+                              S.of(context).days,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: AppColors.primaryColor,
                               ),
-                            );
-                          }),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -306,6 +238,31 @@ class _SideBarState extends State<SideBar> {
           ],
         ),
       ),
+    );
+  }
+
+  showDatePicker() async {
+    await showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: context.screenSize.height / 3,
+          color: CupertinoColors.systemBackground.resolveFrom(context),
+          child: SafeArea(
+            top: false,
+            child: CupertinoDatePicker(
+              initialDateTime: GlobalData.ins.ourDay != null
+                  ? GlobalData.ins.ourDay!.beginDate!
+                  : DateTime.now(),
+              maximumDate: DateTime.now(),
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (DateTime newDate) {
+                _bloc.pickedDate = newDate;
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

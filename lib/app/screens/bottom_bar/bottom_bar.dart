@@ -1,24 +1,21 @@
-import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:belove_app/app/screens/home/home_screen.dart';
-import 'package:belove_app/app/screens/profile/profile_bloc.dart';
-import 'package:belove_app/app/screens/setting/setting_bloc.dart';
 import 'package:belove_app/app/screens/setting/setting_screen.dart';
-import 'package:belove_app/app/screens/wrapper/wrapper_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
 import '../sidebar/sidebar_bloc.dart';
+import 'bottom_bar_bloc.dart';
 
-class Wrapper extends StatefulWidget {
-  const Wrapper({Key? key}) : super(key: key);
+class BottomBar extends StatefulWidget {
+  const BottomBar({Key? key}) : super(key: key);
 
   @override
-  State<Wrapper> createState() => _WrapperState();
+  State<BottomBar> createState() => _BottomBarState();
 }
 
-class _WrapperState extends State<Wrapper> {
-  final _bloc = WrapperBloc.ins;
+class _BottomBarState extends State<BottomBar> {
+  final _bloc = BottomBarBloc.ins;
 
   List<Widget> pages = [
     const HomeScreen(),
@@ -27,17 +24,8 @@ class _WrapperState extends State<Wrapper> {
   ];
 
   @override
-  void initState() {
-    _bloc.getUserData();
-    super.initState();
-  }
-
-  @override
   void dispose() {
-    ProfileBloc.ins.dispose();
     SideBarBloc.ins.dispose();
-    HomeBloc.ins.dispose();
-    SettingBloc.ins.dispose();
     super.dispose();
   }
 

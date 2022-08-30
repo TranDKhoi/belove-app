@@ -15,11 +15,10 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
-  final _bloc = LoginBloc.ins;
+  final _bloc = LoginBloc();
 
   @override
   void dispose() {
-    _bloc.dispose();
     _emailController.dispose();
     _passController.dispose();
     super.dispose();
