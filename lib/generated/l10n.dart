@@ -529,6 +529,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You guys are of the same gender`
+  String get youguysareofthesamegender {
+    return Intl.message(
+      'You guys are of the same gender',
+      name: 'youguysareofthesamegender',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

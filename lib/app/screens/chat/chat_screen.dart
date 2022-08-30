@@ -5,8 +5,6 @@ import 'package:belove_app/app/screens/chat/widgets/chatbar.dart';
 import 'package:belove_app/app/screens/chat/widgets/receive_item.dart';
 import 'package:belove_app/app/screens/chat/widgets/send_item.dart';
 import 'package:belove_app/data/models/message.dart';
-import 'package:belove_app/data/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -20,19 +18,24 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final _scollController = ScrollController();
+  final _scrollController = ScrollController();
   final _bloc = ChatBloc.ins;
 
   @override
   void initState() {
-    //_bloc.getMessage();
-
+    _bloc.getMessage();
+    _bloc.messageList = [];
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        _bloc.getMoreMessage();
+      }
+    });
     super.initState();
   }
 
   @override
   void dispose() {
-    // _bloc.dispose();
     super.dispose();
   }
 
@@ -56,42 +59,32 @@ class _ChatScreenState extends State<ChatScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: context.screenSize.height * 0.1),
               child: StreamBuilder(
-                  stream: DataBaseService.ins.listenerMessage(),
-                  builder: (context,
-                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                          snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data!.docs.isEmpty) {
-                        return Center(
-                          child: Text(
-                            S.of(context).sendyourfirst,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
+                  stream: _bloc.messageStream,
+                  builder: (context, AsyncSnapshot<List<Message>> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: Text(
+                          S.of(context).sendyourfirst,
+                          style: const TextStyle(
+                            color: Colors.grey,
                           ),
-                        );
-                      }
-                      var messMap = snapshot.data!.docs;
-                      return ListView(
-                        reverse: true,
-                        controller: _scollController,
-                        physics: const BouncingScrollPhysics(),
-                        children:
-                            List.generate(snapshot.data!.docs.length, (index) {
-                          Message messItem = Message(
-                            id: messMap[index]["id"],
-                            message: messMap[index]["message"],
-                            senderId: messMap[index]["senderId"],
-                          );
-                          if (messItem.senderId ==
-                              GlobalData.ins.currentUser!.userId) {
-                            return SendMessageItem(item: messItem);
-                          }
-                          return ReceivedMessageItem(item: messItem);
-                        }),
+                        ),
                       );
                     }
-                    return const SizedBox();
+                    return ListView(
+                      reverse: true,
+                      controller: _scrollController,
+                      physics: const BouncingScrollPhysics(),
+                      children:
+                          List.generate(_bloc.messageList.length, (index) {
+                        var messItem = _bloc.messageList[index];
+                        if (messItem.senderId ==
+                            GlobalData.ins.currentUser!.userId) {
+                          return SendMessageItem(item: messItem);
+                        }
+                        return ReceivedMessageItem(item: messItem);
+                      }),
+                    );
                   }),
             ),
             const ChatBar(),

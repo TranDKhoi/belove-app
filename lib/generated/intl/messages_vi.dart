@@ -79,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yearanniversary": MessageLookupByLibrary.simpleMessage("năm kỷ niệm"),
         "yes": MessageLookupByLibrary.simpleMessage("Có"),
         "youare": MessageLookupByLibrary.simpleMessage("Bạn là"),
+        "youguysareofthesamegender":
+            MessageLookupByLibrary.simpleMessage("Các cậu đang cùng giới tính"),
         "yourmustpostsomething":
             MessageLookupByLibrary.simpleMessage("Bạn nên đăng gì đó"),
         "yourname": MessageLookupByLibrary.simpleMessage("Tên là"),

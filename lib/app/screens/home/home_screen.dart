@@ -110,14 +110,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryColor,
-        foregroundColor: Colors.white,
-        onPressed: () {
-          navigatorKey.currentState?.pushNamed(chatScreen);
-        },
-        child: const Icon(Ionicons.chatbubble_outline),
-      ),
+      floatingActionButton: GlobalData.ins.currentUser!.partner != null
+          ? FloatingActionButton(
+              backgroundColor: AppColors.primaryColor,
+              foregroundColor: Colors.white,
+              onPressed: () {
+                navigatorKey.currentState?.pushNamed(chatScreen);
+              },
+              child: const Icon(Ionicons.chatbubble_outline),
+            )
+          : null,
     );
   }
 }

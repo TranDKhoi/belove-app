@@ -46,7 +46,7 @@ class _ChatBarState extends State<ChatBar> {
                   ),
                   suffixIcon: GestureDetector(
                     onTap: () {
-                      ChatBloc.ins.sendMessage(_messController.text);
+                      ChatBloc.ins.sendMessage(_messController.text.trim());
                       _messController.clear();
                     },
                     child: AnimatedSwitcher(

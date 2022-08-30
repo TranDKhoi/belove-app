@@ -8,6 +8,7 @@ class ReceivedMessageItem extends StatefulWidget {
   const ReceivedMessageItem({Key? key, required this.item}) : super(key: key);
 
   final Message item;
+
   @override
   State<ReceivedMessageItem> createState() => _ReceivedMessageItemState();
 }
@@ -36,6 +37,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                     "assets/images/${GlobalData.ins.currentUser!.partner!.gender == 0 ? "boy" : "girl"}.png",
                   ),
                 ),
+          const SizedBox(width: 10),
           Container(
             margin: const EdgeInsets.only(top: 5),
             child: ConstrainedBox(
@@ -43,16 +45,20 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                 minWidth: 30,
                 maxWidth: context.screenSize.width / 2,
               ),
-              child: Container(
-                decoration: BoxDecoration(
+              child: Card(
+                elevation: 10,
+                color: Colors.grey[500],
+                shape: RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.circular(10).copyWith(topLeft: Radius.zero),
-                  border: Border.all(width: 0.5),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Text(
-                    "1",
+                    widget.item.message!,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

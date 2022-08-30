@@ -1,4 +1,5 @@
 import 'package:belove_app/app/core/utils/utils.dart';
+import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/data/models/message.dart';
 import 'package:flutter/material.dart';
@@ -25,16 +26,20 @@ class _SendMessageItemState extends State<SendMessageItem> {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                   minWidth: 30, maxWidth: context.screenSize.width / 2),
-              child: Container(
-                decoration: BoxDecoration(
+              child: Card(
+                color: AppColors.primaryColor,
+                elevation: 10,
+                shape: RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.circular(10).copyWith(topRight: Radius.zero),
-                  border: Border.all(width: 0.5),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Text(
                     widget.item.message!,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

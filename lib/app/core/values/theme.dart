@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = ThemeData.light().copyWith(
   textTheme: ThemeData.light().textTheme.apply(
-        fontFamily: "Arima",
+        fontFamily: "Comfortaa",
       ),
   colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
   appBarTheme: const AppBarTheme(
@@ -14,7 +14,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
 
 final ThemeData darkTheme = ThemeData.dark().copyWith(
   textTheme: ThemeData.dark().textTheme.apply(
-        fontFamily: "Arima",
+        fontFamily: "Comfortaa",
       ),
   colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
   appBarTheme: const AppBarTheme(

@@ -87,12 +87,18 @@ class ProfileBloc {
 
   connectPartner(String id) async {
     try {
-      EasyLoading.show();
       User partner = await DataBaseService.ins.getUserById(id);
+
+      if (partner.gender == GlobalData.ins.currentUser!.gender) {
+        EasyLoading.showToast(S.current.youguysareofthesamegender);
+        return;
+      }
+
       partner.partnerId = GlobalData.ins.currentUser!.userId;
       GlobalData.ins.currentUser!.partnerId = id;
       GlobalData.ins.currentUser!.partner = partner;
 
+      EasyLoading.show();
       await DataBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       await DataBaseService.ins.uploadUserInfo(partner);
       await DataBaseService.ins.createTimeLine();

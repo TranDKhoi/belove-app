@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/data/models/anniversary.dart';
 import 'package:belove_app/data/models/post.dart';
@@ -106,13 +108,72 @@ class DataBaseService {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> listenerMessage() {
     var roomid = _getCoupleId();
-
     return FirebaseFirestore.instance
         .collection('chat_room')
         .doc(roomid)
         .collection("message")
         .orderBy("id", descending: true)
+        .limit(1)
         .snapshots();
+  }
+
+  getMessage() async {
+    var roomid = _getCoupleId();
+
+    var query = await _store
+        .collection("chat_room")
+        .doc(roomid)
+        .collection("message")
+        .orderBy("id", descending: true)
+        .limit(10)
+        .get()
+        .catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+
+    final data = query.docs;
+
+    if (data.isNotEmpty) {
+      lastMess = query.docs[query.docs.length - 1];
+      return data.map((e) {
+        return Message(
+          id: e.id,
+          message: e.get("message"),
+          senderId: e.get("senderId"),
+        );
+      }).toList();
+    }
+    return null;
+  }
+
+  getMoreMessage() async {
+    var roomid = _getCoupleId();
+
+    var query = await _store
+        .collection("chat_room")
+        .doc(roomid)
+        .collection("message")
+        .orderBy("id", descending: true)
+        .limit(10)
+        .startAfterDocument(lastMess)
+        .get()
+        .catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
+
+    final data = query.docs;
+
+    if (data.isNotEmpty) {
+      lastMess = query.docs[query.docs.length - 1];
+      return data.map((e) {
+        return Message(
+          id: e.id,
+          message: e.get("message"),
+          senderId: e.get("senderId"),
+        );
+      }).toList();
+    }
+    return null;
   }
 
   createAnniversary(DateTime day) async {
@@ -220,39 +281,43 @@ class DataBaseService {
   }
 
   Future getMorePosts() async {
-    String timeLineId = _getCoupleId();
+    try {
+      String timeLineId = _getCoupleId();
 
-    final nextQuery = await _store
-        .collection("timeline")
-        .doc(timeLineId)
-        .collection("posts")
-        .orderBy("id", descending: true)
-        .limit(10)
-        .startAfterDocument(lastDoc)
-        .get()
-        .catchError((e) {
-      EasyLoading.showToast(e.toString());
-    });
+      final nextQuery = await _store
+          .collection("timeline")
+          .doc(timeLineId)
+          .collection("posts")
+          .orderBy("id", descending: true)
+          .limit(10)
+          .startAfterDocument(lastDoc)
+          .get()
+          .catchError((e) {
+        EasyLoading.showToast(e.toString());
+      });
 
-    final data = nextQuery.docs;
+      final data = nextQuery.docs;
 
-    if (data.isNotEmpty) {
-      lastDoc = nextQuery.docs[nextQuery.docs.length - 1];
-      return data.map((e) {
-        List<dynamic> imgMap = e.data()["images"];
-        List<String>? imgList;
-        if (imgMap.isNotEmpty) {
-          imgList = imgMap.map((e) => e.toString()).toList();
-        }
+      if (data.isNotEmpty) {
+        lastDoc = nextQuery.docs[nextQuery.docs.length - 1];
+        return data.map((e) {
+          List<dynamic> imgMap = e.data()["images"];
+          List<String>? imgList;
+          if (imgMap.isNotEmpty) {
+            imgList = imgMap.map((e) => e.toString()).toList();
+          }
 
-        return Post(
-          id: e.id,
-          posterId: e.get("posterId"),
-          createdAt: DateTime.parse(e.get("id")),
-          title: e.get("title"),
-          images: imgList,
-        );
-      }).toList();
+          return Post(
+            id: e.id,
+            posterId: e.get("posterId"),
+            createdAt: DateTime.parse(e.get("id")),
+            title: e.get("title"),
+            images: imgList,
+          );
+        }).toList();
+      }
+    } catch (e) {
+      log("error: $e");
     }
     return null;
   }

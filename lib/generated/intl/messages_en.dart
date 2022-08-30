@@ -84,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("years anniversary"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youare": MessageLookupByLibrary.simpleMessage("You are"),
+        "youguysareofthesamegender": MessageLookupByLibrary.simpleMessage(
+            "You guys are of the same gender"),
         "yourmustpostsomething":
             MessageLookupByLibrary.simpleMessage("You must post something"),
         "yourname": MessageLookupByLibrary.simpleMessage("Your name"),

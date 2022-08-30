@@ -50,6 +50,7 @@ class _SideBarState extends State<SideBar> {
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Column(
                   children: [
+                    const SizedBox(height: 10),
                     Text(
                       S.of(context).since,
                       style: const TextStyle(
