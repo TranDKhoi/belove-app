@@ -51,6 +51,15 @@ int countDay(DateTime beginDay) {
   return DateTime.now().difference(beginDay).inDays + 1;
 }
 
+String getCoupleId() {
+  if (GlobalData.ins.currentUser!.gender == 0) {
+    return GlobalData.ins.currentUser!.userId! +
+        GlobalData.ins.currentUser!.partnerId!;
+  }
+  return GlobalData.ins.currentUser!.partnerId! +
+      GlobalData.ins.currentUser!.userId!;
+}
+
 class ImageHelper {
   ImageHelper._();
 
@@ -95,13 +104,4 @@ class ImageHelper {
     }
     return null;
   }
-}
-
-String getCoupleId() {
-  if (GlobalData.ins.currentUser!.gender == 0) {
-    return GlobalData.ins.currentUser!.userId! +
-        GlobalData.ins.currentUser!.partnerId!;
-  }
-  return GlobalData.ins.currentUser!.partnerId! +
-      GlobalData.ins.currentUser!.userId!;
 }

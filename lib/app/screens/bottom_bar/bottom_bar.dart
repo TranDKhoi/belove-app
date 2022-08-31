@@ -1,10 +1,10 @@
+import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/screens/home/home_screen.dart';
 import 'package:belove_app/app/screens/setting/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
-import '../sidebar/sidebar_bloc.dart';
 import 'bottom_bar_bloc.dart';
 
 class BottomBar extends StatefulWidget {
@@ -22,12 +22,6 @@ class _BottomBarState extends State<BottomBar> {
     Text("2"),
     const SettingScreen(),
   ];
-
-  @override
-  void dispose() {
-    SideBarBloc.ins.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +49,7 @@ class _BottomBarState extends State<BottomBar> {
                 showSelectedLabels: false,
                 showUnselectedLabels: false,
                 elevation: 5,
+                selectedItemColor: AppColors.primaryColor,
                 items: [
                   BottomNavigationBarItem(
                     icon: const Icon(Ionicons.home_outline),

@@ -51,8 +51,8 @@ class AddPostBloc {
     if (listImage != null) {
       EasyLoading.show();
 
-      var links = await StoreService.ins.uploadPostImages(
-          listImage!.map((e) => File(e)).toList(), DateTime.now());
+      var links = await StoreService.ins
+          .uploadPostImages(listImage!.map((e) => File(e)).toList(), createdAt);
       if (links != null) {
         await TimelineBaseService.ins.createPost(title, links, createdAt);
       }

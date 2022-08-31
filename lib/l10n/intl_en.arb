@@ -47,5 +47,9 @@
   "darkmode": "Dark mode",
   "language": "Vietnamese",
   "sendyourfirst": "Let's send the first message to your beloved!",
-  "youguysareofthesamegender": "You guys are of the same gender"
+  "youguysareofthesamegender": "You guys are of the same gender",
+  "deletepost": "Delete post?",
+  "memoryname": "Memory name",
+  "create": "Create",
+  "delete": "Delete?"
 }

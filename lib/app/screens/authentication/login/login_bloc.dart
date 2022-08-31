@@ -3,10 +3,12 @@ import 'package:belove_app/data/models/user.dart';
 import 'package:belove_app/data/services/auth.dart';
 import 'package:belove_app/data/services/database/user_base.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../global_data/global_key.dart';
 import '../../../route.dart';
+import '../../sidebar/sidebar_bloc.dart';
 
 class LoginBloc {
   void loginWithEmailPass(
@@ -33,9 +35,24 @@ class LoginBloc {
               .pushNamedAndRemoveUntil(bioScreen, (_) => false);
           return;
         }
+        await fetchUserData();
         navigatorKey.currentState!
             .pushNamedAndRemoveUntil(bottomBarScreen, (_) => false);
       }
     }
+  }
+
+  fetchUserData() async {
+    if (GlobalData.ins.currentUser!.partnerId != "") {
+      GlobalData.ins.currentUser!.partner = await UserBaseService.ins
+          .getUserById(GlobalData.ins.currentUser!.partnerId!);
+
+      //set ourDay
+      await SideBarBloc.ins.getAnniversary();
+    }
+
+    //save to local
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString("userId", GlobalData.ins.currentUser!.userId!);
   }
 }

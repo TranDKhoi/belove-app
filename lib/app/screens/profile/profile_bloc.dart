@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:belove_app/app/global_data/global_key.dart';
+import 'package:belove_app/data/models/anniversary.dart';
+import 'package:belove_app/data/services/database/anniversary_base.dart';
 import 'package:belove_app/data/services/database/chat_base.dart';
 import 'package:belove_app/data/services/database/timeline_base.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -63,10 +65,11 @@ class ProfileBloc {
     }
   }
 
-  uploadBirthDay(DateTime newDate) async {
-    GlobalData.ins.currentUser!.birthday = newDate;
+  uploadBirthDay() async {
+    if (birthDay == null) return;
+    GlobalData.ins.currentUser!.birthday = birthDay;
     await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
-    _birthdayStreamController.sink.add(dateFormat(newDate));
+    _birthdayStreamController.sink.add(dateFormat(birthDay!));
   }
 
   Future<User?> findPartner(String pId) async {
@@ -99,7 +102,13 @@ class ProfileBloc {
       EasyLoading.show();
       await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       await UserBaseService.ins.uploadUserInfo(partner);
-      await TimelineBaseService.ins.createTimeLine();
+      await TimelineBaseService.ins.createTimeLineCollection();
+      await AnniversaryBaseService.ins.createAnniversaryCollection();
+      await AnniversaryBaseService.ins.uploadAnniversary(
+          Anniversary(title: partner.name, date: partner.birthday));
+      await AnniversaryBaseService.ins.uploadAnniversary(Anniversary(
+          title: GlobalData.ins.currentUser!.name,
+          date: GlobalData.ins.currentUser!.birthday));
       await ChatBaseService.ins.createChatRoom();
       navigatorKey.currentState?.pop();
       navigatorKey.currentState?.pop();

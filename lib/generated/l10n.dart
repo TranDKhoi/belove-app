@@ -539,6 +539,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete post?`
+  String get deletepost {
+    return Intl.message(
+      'Delete post?',
+      name: 'deletepost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Memory name`
+  String get memoryname {
+    return Intl.message(
+      'Memory name',
+      name: 'memoryname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get create {
+    return Intl.message(
+      'Create',
+      name: 'create',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete?`
+  String get delete {
+    return Intl.message(
+      'Delete?',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

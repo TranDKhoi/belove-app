@@ -96,27 +96,28 @@ class _LeftColState extends State<LeftCol> {
           style: const TextStyle(fontSize: 17),
         ),
         GestureDetector(
-          onTap: () {
-            showCupertinoModalPopup(
+          onTap: () async {
+            await showCupertinoModalPopup(
               context: context,
               builder: (context) {
-                return Container(
+                return SizedBox(
                   height: context.screenSize.height / 3,
-                  color: CupertinoColors.systemBackground.resolveFrom(context),
                   child: SafeArea(
                     top: false,
                     child: CupertinoDatePicker(
+                      backgroundColor: Colors.grey,
                       initialDateTime: GlobalData.ins.currentUser!.birthday,
                       maximumDate: DateTime.now(),
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDate) {
-                        _bloc.uploadBirthDay(newDate);
+                        _bloc.birthDay = newDate;
                       },
                     ),
                   ),
                 );
               },
             );
+            _bloc.uploadBirthDay();
           },
           child: StreamBuilder<String>(
             stream: _bloc.birthDayStream,

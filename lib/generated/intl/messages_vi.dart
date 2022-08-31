@@ -30,9 +30,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "copied": MessageLookupByLibrary.simpleMessage("Đã chép"),
+        "create": MessageLookupByLibrary.simpleMessage("Tạo"),
         "darkmode": MessageLookupByLibrary.simpleMessage("Ban đêm"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
         "days": MessageLookupByLibrary.simpleMessage("ngày"),
+        "delete": MessageLookupByLibrary.simpleMessage("Xóa?"),
+        "deletepost": MessageLookupByLibrary.simpleMessage("Xóa bài đăng?"),
         "enteryourbirthday":
             MessageLookupByLibrary.simpleMessage("Nhập ngày sinh của bạn"),
         "enteryouremail": MessageLookupByLibrary.simpleMessage("Nhập email"),
@@ -48,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
+        "memoryname": MessageLookupByLibrary.simpleMessage("Tên kỷ niệm"),
         "more": MessageLookupByLibrary.simpleMessage("Thêm"),
         "morepost": MessageLookupByLibrary.simpleMessage("Bài đăng"),
         "mustbe6": MessageLookupByLibrary.simpleMessage("Tối thiểu 6 ký tựu"),

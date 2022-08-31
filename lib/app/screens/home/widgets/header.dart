@@ -1,6 +1,7 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/screens/home/home_bloc.dart';
 import 'package:belove_app/app/screens/home/home_inherited.dart';
+import 'package:belove_app/data/models/anniversary.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -46,57 +47,25 @@ class _HomeHeaderState extends State<HomeHeader> {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                StreamBuilder<int>(
-                    stream: SideBarBloc.ins.beginDayStream,
+                StreamBuilder<List<Anniversary>>(
+                    stream: SideBarBloc.ins.anniverStream,
                     builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Row(
-                          children: [
-                            Text(
-                              snapshot.data.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 50,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              S.of(context).days,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        );
-                      }
-                      if (GlobalData.ins.ourDay != null) {
-                        return Row(
-                          children: [
-                            Text(
-                              countDay(GlobalData.ins.ourDay!.beginDate!)
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 50,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              S.of(context).days,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        );
-                      }
                       return Row(
                         children: [
-                          const Text(
-                            "0",
-                            style: TextStyle(
+                          Text(
+                            countDay(snapshot.hasData
+                                    ? GlobalData.ins.ourDay != null
+                                        ? GlobalData.ins.ourDay!.date!
+                                        : DateTime.now().add(
+                                            const Duration(days: 2),
+                                          )
+                                    : GlobalData.ins.ourDay != null
+                                        ? GlobalData.ins.ourDay!.date!
+                                        : DateTime.now().add(
+                                            const Duration(days: 2),
+                                          ))
+                                .toString(),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 50,
                               height: 1,

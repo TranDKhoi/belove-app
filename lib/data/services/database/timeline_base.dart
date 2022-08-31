@@ -16,7 +16,7 @@ class TimelineBaseService {
   var lastDoc;
 
   //-----------------------------------------------------------
-  createTimeLine() async {
+  createTimeLineCollection() async {
     String timeLineId = getCoupleId();
 
     await _store
@@ -130,5 +130,19 @@ class TimelineBaseService {
       log("error: $e");
     }
     return null;
+  }
+
+  deletePost(String postId) async {
+    String timeLineId = getCoupleId();
+
+    await _store
+        .collection("timeline")
+        .doc(timeLineId)
+        .collection("posts")
+        .doc(postId)
+        .delete()
+        .catchError((e) {
+      EasyLoading.showToast(e.toString());
+    });
   }
 }

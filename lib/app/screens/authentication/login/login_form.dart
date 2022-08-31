@@ -27,49 +27,45 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.zero,
+      contentPadding: const EdgeInsets.all(10),
       content: Wrap(
         children: [
           Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.zero,
-                        isDense: true,
-                        hintText: S.of(context).enteryouremail,
-                        suffixIcon: _emailController.text.isNotEmpty
-                            ? GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _emailController.clear();
-                                  });
-                                },
-                                child: const Icon(Ionicons.close_circle_sharp))
-                            : null,
-                        suffixIconConstraints:
-                            const BoxConstraints(maxWidth: 20),
-                      ),
-                      onChanged: (val) {
-                        setState(() {});
-                      },
+              Column(
+                children: [
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.zero,
+                      isDense: true,
+                      hintText: S.of(context).enteryouremail,
+                      suffixIcon: _emailController.text.isNotEmpty
+                          ? GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _emailController.clear();
+                                });
+                              },
+                              child: const Icon(Ionicons.close_circle_sharp))
+                          : null,
+                      suffixIconConstraints: const BoxConstraints(maxWidth: 20),
                     ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      controller: _passController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.zero,
-                        isDense: true,
-                        hintText: S.of(context).enteryourpass,
-                      ),
+                    onChanged: (val) {
+                      setState(() {});
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    controller: _passController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.zero,
+                      isDense: true,
+                      hintText: S.of(context).enteryourpass,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const Divider(
                 color: AppColors.primaryColor,

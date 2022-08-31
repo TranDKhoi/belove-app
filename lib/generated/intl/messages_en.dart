@@ -30,9 +30,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
+        "create": MessageLookupByLibrary.simpleMessage("Create"),
         "darkmode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "dateofbirth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "days": MessageLookupByLibrary.simpleMessage("days"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete?"),
+        "deletepost": MessageLookupByLibrary.simpleMessage("Delete post?"),
         "enteryourbirthday":
             MessageLookupByLibrary.simpleMessage("Enter your birthday"),
         "enteryouremail":
@@ -50,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginwithfb":
             MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
+        "memoryname": MessageLookupByLibrary.simpleMessage("Memory name"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "morepost": MessageLookupByLibrary.simpleMessage("More post"),
         "mustbe6": MessageLookupByLibrary.simpleMessage(

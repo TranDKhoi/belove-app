@@ -23,12 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   initState() {
-    _bloc.fetchUserData();
     _sc.addListener(() {
       if (_sc.position.pixels == _sc.position.maxScrollExtent) {
         _bloc.loadMorePost();
       }
     });
+    _bloc.getPost();
     super.initState();
   }
 

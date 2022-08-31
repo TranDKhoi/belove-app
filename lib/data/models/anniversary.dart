@@ -1,7 +1,11 @@
 class Anniversary {
-  DateTime? beginDate;
+  String? id;
+  String? title;
+  DateTime? date;
 
   Anniversary({
-    this.beginDate,
+    this.id,
+    this.title,
+    this.date,
   });
 }

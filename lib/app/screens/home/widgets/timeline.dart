@@ -19,7 +19,6 @@ class _HomeTimeLineState extends State<HomeTimeLine> {
   @override
   void didChangeDependencies() {
     _bloc = HomeInherited.of(context).bloc;
-    _bloc.getPost();
     super.didChangeDependencies();
   }
 
@@ -29,6 +28,11 @@ class _HomeTimeLineState extends State<HomeTimeLine> {
         stream: _bloc.postStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            if (_bloc.posts.isEmpty) {
+              return GlobalData.ins.isDark
+                  ? Image.asset("assets/images/empty_dark.png")
+                  : Image.asset("assets/images/empty.png");
+            }
             return Column(
               children: _bloc.posts.map((e) => PostItem(item: e)).toList(),
             );

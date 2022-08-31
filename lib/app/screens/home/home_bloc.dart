@@ -4,11 +4,8 @@ import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/data/models/post.dart';
 import 'package:belove_app/data/services/database/timeline_base.dart';
 import 'package:belove_app/data/services/database/user_base.dart';
+import 'package:belove_app/data/services/store.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../data/models/user.dart';
-import '../../../data/services/database/anniversary_base.dart';
 
 class HomeBloc {
   //STREAM------------------------------------------
@@ -44,21 +41,19 @@ class HomeBloc {
       EasyLoading.dismiss();
       posts = res;
       _postStreamController.sink.add(posts);
+    } else {
+      posts = [];
+      _postStreamController.sink.add(posts);
     }
     EasyLoading.dismiss();
   }
 
-  fetchUserData() async {
-    if (GlobalData.ins.currentUser!.partnerId != "") {
-      User partner = await UserBaseService.ins
-          .getUserById(GlobalData.ins.currentUser!.partnerId!);
-      GlobalData.ins.currentUser!.partner = partner;
-      GlobalData.ins.ourDay = await AnniversaryBaseService.ins.getAnniversary();
+  deletePost(Post post) async {
+    await TimelineBaseService.ins.deletePost(post.id!);
+    if (post.images != null) {
+      await StoreService.ins.deletePostImage(post.id!);
     }
-
-    //save to local
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setString("userId", GlobalData.ins.currentUser!.userId!);
+    getPost();
   }
 
   void dispose() {

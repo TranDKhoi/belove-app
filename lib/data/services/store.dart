@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -31,7 +32,7 @@ class StoreService {
       List<String> downloadUrls = [];
       await Future.forEach(listImg, (File image) async {
         Reference ref = _store.ref().child(
-            "post/${GlobalData.ins.currentUser!.userId}${GlobalData.ins.currentUser!.partnerId}/$createdAt/${DateTime.now().toString()}");
+            "post/${getCoupleId()}/$createdAt/${DateTime.now().toString()}");
         final UploadTask uploadTask = ref.putFile(image);
         final TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
         final url = await taskSnapshot.ref.getDownloadURL();
@@ -42,5 +43,13 @@ class StoreService {
     } catch (e) {
       EasyLoading.showToast(e.toString());
     }
+  }
+
+  deletePostImage(String postId) async {
+    await _store.ref("post/${getCoupleId()}/$postId/").listAll().then((result) {
+      for (var file in result.items) {
+        file.delete();
+      }
+    });
   }
 }

@@ -134,14 +134,13 @@ class _BioFormState extends State<BioForm> {
                   showCupertinoModalPopup(
                     context: context,
                     builder: (context) {
-                      return Container(
+                      return SizedBox(
                         height: context.screenSize.height / 3,
-                        color: CupertinoColors.systemBackground
-                            .resolveFrom(context),
                         child: SafeArea(
                           top: false,
                           child: CupertinoDatePicker(
                             initialDateTime: DateTime(2001, 3, 25),
+                            backgroundColor: Colors.grey,
                             maximumDate: DateTime.now(),
                             mode: CupertinoDatePickerMode.date,
                             onDateTimeChanged: (DateTime newDate) {
