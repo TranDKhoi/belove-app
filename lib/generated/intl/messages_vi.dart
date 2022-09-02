@@ -67,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "post": MessageLookupByLibrary.simpleMessage("Đăng bài"),
         "preference": MessageLookupByLibrary.simpleMessage("Giao diện"),
         "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
+        "send": MessageLookupByLibrary.simpleMessage("Gửi?"),
         "sendyourfirst": MessageLookupByLibrary.simpleMessage(
             "Hãy gửi tin nhắn đầu tiên đến cho người ấy!"),
         "setting": MessageLookupByLibrary.simpleMessage("Cài đặt"),

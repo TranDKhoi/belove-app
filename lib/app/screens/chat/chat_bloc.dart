@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:belove_app/data/services/database/chat_base.dart';
+import 'package:belove_app/data/services/store.dart';
 
 import '../../../data/models/message.dart';
 
@@ -30,10 +32,18 @@ class ChatBloc {
         .sendMessage(Message(message: mess), DateTime.now());
   }
 
+  sendImage(String image) async {
+    var time = DateTime.now();
+    var res = await StoreService.ins.uploadChatImage(File(image), time);
+    await ChatBaseService.ins.sendMessage(Message(image: res), time);
+    await getMessage();
+  }
+
   getMessage() async {
     var res = await ChatBaseService.ins.getMessage();
 
     if (res != null) {
+      messageList = [];
       messageList.addAll(res);
       _messageStreamController.sink.add(messageList);
     }
@@ -55,6 +65,7 @@ class ChatBloc {
         id: messMap.first["id"],
         senderId: messMap.first["senderId"],
         message: messMap.first["message"],
+        image: messMap.first["image"],
       );
       messageList.insert(0, messItem);
       _messageStreamController.sink.add(messageList);

@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "post": MessageLookupByLibrary.simpleMessage("Post"),
         "preference": MessageLookupByLibrary.simpleMessage("Preference"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "send": MessageLookupByLibrary.simpleMessage("Send?"),
         "sendyourfirst": MessageLookupByLibrary.simpleMessage(
             "Let\'s send the first message to your beloved!"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),

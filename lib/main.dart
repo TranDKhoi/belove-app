@@ -1,4 +1,5 @@
 import 'package:belove_app/app/core/utils/utils.dart';
+import 'package:belove_app/app/screens/bottom_bar/bottom_bar_bloc.dart';
 import 'package:belove_app/data/services/database/user_base.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,6 +31,9 @@ initData() async {
 
   if (res != null) {
     GlobalData.ins.currentUser = await UserBaseService.ins.getUserById(res);
+    if (GlobalData.ins.currentUser!.partnerId != "") {
+      await BottomBarBloc.ins.fetchUserData();
+    }
   }
 
   GlobalData.ins.isDark = pref.getBool("isDark") ?? false;

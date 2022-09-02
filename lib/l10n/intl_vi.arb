@@ -51,5 +51,7 @@
   "deletepost": "Xóa bài đăng?",
   "memoryname": "Tên kỷ niệm",
   "create": "Tạo",
-  "delete": "Xóa?"
+  "delete": "Xóa?",
+  "send": "Gửi?"
+
 }

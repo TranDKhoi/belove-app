@@ -68,9 +68,4 @@ class SideBarBloc {
     getAnniversary();
     navigatorKey.currentState?.pop();
   }
-
-  void dispose() {
-    _anniverStreamController.close();
-    pickedDate = null;
-  }
 }

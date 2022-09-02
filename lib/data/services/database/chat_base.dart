@@ -49,6 +49,7 @@ class ChatBaseService {
         .set({
       "id": createdAt.toString(),
       "message": newMess.message,
+      "image": newMess.image,
       "senderId": GlobalData.ins.currentUser!.userId,
     }).catchError((e) {
       EasyLoading.showToast(e.toString());
@@ -89,6 +90,7 @@ class ChatBaseService {
           id: e.id,
           message: e.get("message"),
           senderId: e.get("senderId"),
+          image: e.get("image"),
         );
       }).toList();
     }
@@ -119,6 +121,7 @@ class ChatBaseService {
           id: e.id,
           message: e.get("message"),
           senderId: e.get("senderId"),
+          image: e.get("image"),
         );
       }).toList();
     }

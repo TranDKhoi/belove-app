@@ -24,6 +24,11 @@ class AnniversaryItem extends StatelessWidget {
 
     return InkWell(
       onLongPress: () async {
+        if (item.title == GlobalData.ins.currentUser!.name ||
+            item.title == GlobalData.ins.currentUser!.partner!.name ||
+            item.title == " years anniversary") {
+          return;
+        }
         await showCupertinoModalPopup(
             context: context,
             builder: (context) {

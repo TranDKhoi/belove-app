@@ -5,7 +5,6 @@ import 'package:belove_app/app/screens/chat/widgets/chatbar.dart';
 import 'package:belove_app/app/screens/chat/widgets/receive_item.dart';
 import 'package:belove_app/app/screens/chat/widgets/send_item.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 import '../../../data/models/message.dart';
 import '../../../generated/l10n.dart';
@@ -46,12 +45,6 @@ class _ChatScreenState extends State<ChatScreen> {
           title: Text(GlobalData.ins.currentUser!.partner?.name == null
               ? "..."
               : GlobalData.ins.currentUser!.partner!.name!),
-          actions: [
-            GestureDetector(onTap: () {}, child: const Icon(Ionicons.call)),
-            const SizedBox(width: 20),
-            GestureDetector(onTap: () {}, child: const Icon(Ionicons.videocam)),
-            const SizedBox(width: 20),
-          ],
         ),
         body: Stack(
           alignment: Alignment.bottomCenter,

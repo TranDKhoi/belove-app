@@ -5,10 +5,10 @@ import 'package:belove_app/data/services/database/user_base.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../data/services/database/anniversary_base.dart';
 import '../../../../generated/l10n.dart';
 import '../../../global_data/global_key.dart';
 import '../../../route.dart';
-import '../../sidebar/sidebar_bloc.dart';
 
 class LoginBloc {
   void loginWithEmailPass(
@@ -48,7 +48,15 @@ class LoginBloc {
           .getUserById(GlobalData.ins.currentUser!.partnerId!);
 
       //set ourDay
-      await SideBarBloc.ins.getAnniversary();
+      var res = await AnniversaryBaseService.ins.getAnniversary();
+      if (res != null) {
+        for (int i = 0; i < res.length; i++) {
+          if (res[i].title == " years anniversary") {
+            GlobalData.ins.ourDay = res[i];
+          }
+          break;
+        }
+      }
     }
 
     //save to local

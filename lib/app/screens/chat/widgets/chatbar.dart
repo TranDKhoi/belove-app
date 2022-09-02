@@ -1,5 +1,6 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:belove_app/app/screens/chat/chat_bloc.dart';
+import 'package:belove_app/app/screens/chat/widgets/send_image_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -21,8 +22,20 @@ class _ChatBarState extends State<ChatBar> {
         padding: const EdgeInsets.all(12),
         child: Row(
           children: [
-            const Icon(
-              Ionicons.image_outline,
+            GestureDetector(
+              onTap: () async {
+                var res = await ImageHelper.ins.pickSingleImage();
+                if (res != null) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SendImageDialog(imagePath: res);
+                      });
+                }
+              },
+              child: const Icon(
+                Ionicons.image_outline,
+              ),
             ),
             const SizedBox(width: 10),
             Expanded(

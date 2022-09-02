@@ -8,7 +8,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import '../../../generated/l10n.dart';
 import '../../global_data/global_key.dart';
 import '../../screens/my_app/my_app_bloc.dart';
-import '../sidebar/sidebar_bloc.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,7 +22,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     _bloc.dispose();
-    SideBarBloc.ins.dispose();
     super.dispose();
   }
 

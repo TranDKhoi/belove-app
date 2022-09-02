@@ -35,12 +35,16 @@ class _SendMessageItemState extends State<SendMessageItem> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
-                  child: Text(
-                    widget.item.message!,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: widget.item.message != null
+                      ? Text(
+                          widget.item.message!,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      : widget.item.image == null
+                          ? const Center()
+                          : Image.network(widget.item.image!),
                 ),
               ),
             ),

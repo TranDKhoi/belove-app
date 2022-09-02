@@ -45,6 +45,22 @@ class StoreService {
     }
   }
 
+  uploadChatImage(File img, DateTime createdAt) async {
+    try {
+      final ref = _store
+          .ref()
+          .child("chat_room/${getCoupleId()}/${createdAt.toString()}");
+      final uploadTask = ref.putFile(img);
+
+      final snapShot = await uploadTask.whenComplete(() {});
+
+      final url = await snapShot.ref.getDownloadURL();
+      return url;
+    } catch (e) {
+      EasyLoading.showToast(e.toString());
+    }
+  }
+
   deletePostImage(String postId) async {
     await _store.ref("post/${getCoupleId()}/$postId/").listAll().then((result) {
       for (var file in result.items) {
