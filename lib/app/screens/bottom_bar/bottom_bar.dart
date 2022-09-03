@@ -1,4 +1,5 @@
 import 'package:belove_app/app/core/values/color.dart';
+import 'package:belove_app/app/screens/calendar/calendar_screen.dart';
 import 'package:belove_app/app/screens/home/home_screen.dart';
 import 'package:belove_app/app/screens/setting/setting_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,9 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   final _bloc = BottomBarBloc.ins;
 
-  List<Widget> pages = [
+  final List<Widget> pages = [
     const HomeScreen(),
-    Text("2"),
+    const CalendarScreen(),
     const SettingScreen(),
   ];
 

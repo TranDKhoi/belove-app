@@ -1,5 +1,6 @@
 import 'package:belove_app/app/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../data/models/message.dart';
 import '../../../global_data/global_data.dart';
@@ -14,6 +15,8 @@ class ReceivedMessageItem extends StatefulWidget {
 }
 
 class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
+  bool isClicked = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,26 +48,40 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                 minWidth: 30,
                 maxWidth: context.screenSize.width / 2,
               ),
-              child: Card(
-                elevation: 10,
-                color: Colors.grey[500],
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(10).copyWith(topLeft: Radius.zero),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: widget.item.message != null
-                      ? Text(
-                          widget.item.message!,
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
-                        )
-                      : widget.item.image == null
-                          ? const Center()
-                          : Image.network(widget.item.image!),
-                ),
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isClicked = !isClicked;
+                      });
+                    },
+                    child: Card(
+                      elevation: 10,
+                      color: Colors.grey[500],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                            .copyWith(topLeft: Radius.zero),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: widget.item.message != null
+                            ? Text(
+                                widget.item.message!,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : widget.item.image == null
+                                ? const Center()
+                                : Image.network(widget.item.image!),
+                      ),
+                    ),
+                  ),
+                  if (isClicked)
+                    Text(DateFormat.Hm()
+                        .format(DateTime.parse(widget.item.id!))),
+                ],
               ),
             ),
           ),

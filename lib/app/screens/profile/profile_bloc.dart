@@ -60,7 +60,7 @@ class ProfileBloc {
     var imgLink = await StoreService.ins.uploadUserAvatar(imageFile);
     if (imgLink != null) {
       GlobalData.ins.currentUser!.avatar = imgLink;
-      UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
+      await UserBaseService.ins.uploadUserInfo(GlobalData.ins.currentUser!);
       _avatarStreamController.sink.add(imgLink);
     }
   }
