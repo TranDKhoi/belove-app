@@ -1,6 +1,7 @@
 import 'package:belove_app/app/core/values/color.dart';
 import 'package:belove_app/app/global_data/global_data.dart';
 import 'package:belove_app/app/route.dart';
+import 'package:belove_app/data/services/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import '../../../generated/l10n.dart';
 import '../../global_data/global_key.dart';
 import '../../screens/my_app/my_app_bloc.dart';
+import '../chat/chat_bloc.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -18,6 +20,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final MyAppBloc _bloc = MyAppBloc.ins;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {

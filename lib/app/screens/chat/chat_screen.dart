@@ -23,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     _bloc.getMessage();
+    _bloc.isInChatScreen = true;
     _bloc.messageList = [];
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -35,6 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
+    _bloc.isInChatScreen = false;
     super.dispose();
   }
 

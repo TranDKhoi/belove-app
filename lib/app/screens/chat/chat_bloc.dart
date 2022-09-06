@@ -1,19 +1,25 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:belove_app/app/global_data/global_data.dart';
+import 'package:belove_app/app/route.dart';
 import 'package:belove_app/data/services/database/chat_base.dart';
+import 'package:belove_app/data/services/notification.dart';
 import 'package:belove_app/data/services/store.dart';
 
 import '../../../data/models/message.dart';
 
 class ChatBloc {
   ChatBloc._() {
-    listenToMessage();
+    isFirstTime = true;
   }
 
   static final ins = ChatBloc._();
 
   List<Message> messageList = [];
+
+  bool isInChatScreen = false;
+  bool? isFirstTime;
 
   //STREAM-----------------------------------------
   final StreamController<List<Message>> _messageStreamController =
@@ -58,7 +64,7 @@ class ChatBloc {
     }
   }
 
-  listenToMessage() {
+  listenToMessage() async {
     newMessageListener.listen((event) {
       var messMap = event.docs;
       Message messItem = Message(
@@ -67,6 +73,9 @@ class ChatBloc {
         message: messMap.first["message"],
         image: messMap.first["image"],
       );
+
+      showNotify(messItem);
+
       messageList.insert(0, messItem);
       _messageStreamController.sink.add(messageList);
     });
@@ -74,5 +83,21 @@ class ChatBloc {
 
   void dispose() {
     _messageStreamController.close();
+  }
+
+  void showNotify(Message messItem) {
+    final pushNotification = PushNotificationService.ins;
+
+    if (messItem.senderId == GlobalData.ins.currentUser!.userId) return;
+    if (isInChatScreen) return;
+
+    if (isFirstTime!) {
+      isFirstTime = false;
+      return;
+    }
+    pushNotification.showMessageNotification(
+        id: 0,
+        title: GlobalData.ins.currentUser!.partner!.name,
+        body: messItem.message ?? "Image",payload: chatScreen);
   }
 }
