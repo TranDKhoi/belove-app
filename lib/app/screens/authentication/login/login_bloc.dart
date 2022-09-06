@@ -9,6 +9,7 @@ import '../../../../data/services/database/anniversary_base.dart';
 import '../../../../generated/l10n.dart';
 import '../../../global_data/global_key.dart';
 import '../../../route.dart';
+import '../../chat/chat_bloc.dart';
 
 class LoginBloc {
   void loginWithEmailPass(
@@ -36,6 +37,7 @@ class LoginBloc {
           return;
         }
         await fetchUserData();
+        ChatBloc.ins.listenToMessage();
         navigatorKey.currentState!
             .pushNamedAndRemoveUntil(bottomBarScreen, (_) => false);
       }

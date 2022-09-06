@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../generated/l10n.dart';
+import '../chat/chat_bloc.dart';
 import 'bottom_bar_bloc.dart';
 
 class BottomBar extends StatefulWidget {
@@ -17,6 +18,12 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   final _bloc = BottomBarBloc.ins;
+
+  @override
+  void dispose() {
+    ChatBloc.ins.dispose();
+    super.dispose();
+  }
 
   final List<Widget> pages = [
     const HomeScreen(),

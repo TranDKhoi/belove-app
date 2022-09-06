@@ -28,6 +28,7 @@ class ChatBloc {
   Stream<List<Message>> get messageStream => _messageStreamController.stream;
 
   Stream newMessageListener = ChatBaseService.ins.listenerMessage();
+  StreamSubscription? subscription;
 
   //----------------------------------------------------
 
@@ -65,7 +66,7 @@ class ChatBloc {
   }
 
   listenToMessage() async {
-    newMessageListener.listen((event) {
+    subscription = newMessageListener.listen((event) {
       var messMap = event.docs;
       Message messItem = Message(
         id: messMap.first["id"],
@@ -82,7 +83,7 @@ class ChatBloc {
   }
 
   void dispose() {
-    _messageStreamController.close();
+    isFirstTime = true;
   }
 
   void showNotify(Message messItem) {
@@ -98,6 +99,7 @@ class ChatBloc {
     pushNotification.showMessageNotification(
         id: 0,
         title: GlobalData.ins.currentUser!.partner!.name,
-        body: messItem.message ?? "Image",payload: chatScreen);
+        body: messItem.message ?? "Image",
+        payload: chatScreen);
   }
 }
