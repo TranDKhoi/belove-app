@@ -4,6 +4,7 @@ import 'package:belove_app/app/screens/chat/chat_bloc.dart';
 import 'package:belove_app/app/screens/chat/widgets/chatbar.dart';
 import 'package:belove_app/app/screens/chat/widgets/receive_item.dart';
 import 'package:belove_app/app/screens/chat/widgets/send_item.dart';
+import 'package:belove_app/data/services/notification.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/message.dart';
@@ -22,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
+    PushNotificationService.ins.clearAllNotify();
     _bloc.getMessage();
     _bloc.isInChatScreen = true;
     _bloc.messageList = [];

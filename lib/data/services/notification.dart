@@ -3,21 +3,22 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class PushNotificationService {
   PushNotificationService._();
+
   static final ins = PushNotificationService._();
   static final _notification = FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
     const androidSetting =
-    AndroidInitializationSettings("@drawable/ic_stat_sms");
+        AndroidInitializationSettings("@drawable/ic_stat_sms");
     var iosSetting = IOSInitializationSettings(
         requestAlertPermission: true,
         requestBadgePermission: true,
         requestSoundPermission: true,
         onDidReceiveLocalNotification: _onDidReceiveLocalNotification);
-    final settings = InitializationSettings(
-        android: androidSetting, iOS: iosSetting);
-    await _notification.initialize(
-        settings, onSelectNotification: onSelectNotification);
+    final settings =
+        InitializationSettings(android: androidSetting, iOS: iosSetting);
+    await _notification.initialize(settings,
+        onSelectNotification: onSelectNotification);
   }
 
   Future showMessageNotification({
@@ -27,8 +28,7 @@ class PushNotificationService {
     String? payload,
   }) async {
     final details = await _notificationDetails();
-    return _notification.show(id, title, body, details,
-        payload: payload);
+    return _notification.show(id, title, body, details, payload: payload);
   }
 
   Future<NotificationDetails> _notificationDetails() async {
@@ -45,12 +45,17 @@ class PushNotificationService {
     );
   }
 
-  void _onDidReceiveLocalNotification(int id, String? title, String? body,
-      String? payload) {
+  void _onDidReceiveLocalNotification(
+      int id, String? title, String? body, String? payload) {
     print("id: $id");
   }
 
   void onSelectNotification(String? payload) {
+    clearAllNotify();
     navigatorKey.currentState?.pushNamed(payload!);
+  }
+
+  void clearAllNotify() {
+    _notification.cancelAll();
   }
 }
