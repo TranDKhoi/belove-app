@@ -12,7 +12,9 @@ class SettingBloc {
   logOut() async {
     SharedPreferences ref = await SharedPreferences.getInstance();
     await AuthService.ins.signOut();
-    ChatBloc.ins.subscription!.cancel();
+    if (ChatBloc.ins.subscription != null) {
+      ChatBloc.ins.subscription!.cancel();
+    }
     ref.remove("userId");
     navigatorKey.currentState
         ?.pushNamedAndRemoveUntil(mainAuthScreen, (_) => false);

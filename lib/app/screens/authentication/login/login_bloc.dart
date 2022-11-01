@@ -51,12 +51,13 @@ class LoginBloc {
 
       //set ourDay
       var res = await AnniversaryBaseService.ins.getAnniversary();
+
       if (res != null) {
         for (int i = 0; i < res.length; i++) {
           if (res[i].title == " years anniversary") {
             GlobalData.ins.ourDay = res[i];
+            break;
           }
-          break;
         }
       }
     }
